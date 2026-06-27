@@ -6,6 +6,10 @@
   <title>Tonantzin &amp; Rafael · 24 · X · 2026</title>
   <meta name="description" content="Invitación de boda · Tonantzin y Rafael · 24 de octubre del 2026" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
@@ -14,26 +18,20 @@
     body {
       min-height: 100vh;
       min-height: 100dvh;
-      background-color: #B4B5B0;
+      /* deep wine "mat" so the empty space above/below the photo reads as
+         an intentional frame that matches the invitation's wine/gold cards */
+      background-color: #43202a;          /* fallback + iOS overscroll color */
       background-image:
-        radial-gradient(ellipse 800px 600px at 18% 12%, rgba(60,55,48,0.22) 0%, transparent 55%),
-        radial-gradient(ellipse 700px 600px at 85% 25%, rgba(50,48,40,0.2)  0%, transparent 50%),
-        radial-gradient(ellipse 800px 600px at 25% 82%, rgba(60,55,45,0.22) 0%, transparent 55%),
-        radial-gradient(ellipse 950px 700px at 92% 92%, rgba(50,45,38,0.25) 0%, transparent 50%),
-        linear-gradient(155deg, #C3BFB4 0%, #B4B0A4 30%, #A39E92 60%, #8C887E 100%);
-      background-attachment: fixed;
+        radial-gradient(ellipse 120% 80% at 50% 38%, #5a2731 0%, #43202a 70%, #371720 100%);
       display: flex;
-      justify-content: center;
-      align-items: center;                 /* center the photo vertically */
-      padding: clamp(0.6rem, 2vw, 1.4rem);
+      flex-direction: column;            /* monogram · photo · date stacked */
+      align-items: center;
+      justify-content: space-between;    /* push the frame text to the edges */
+      gap: clamp(0.5rem, 2.2vh, 1.3rem);
+      padding:
+        calc(0.9rem + env(safe-area-inset-top)) 0.9rem
+        calc(0.9rem + env(safe-area-inset-bottom));
       font-family: Georgia, serif;
-    }
-
-    /* On phones, drop the padding so the photo goes edge-to-edge and
-       takes its largest possible size without cropping any content. */
-    @media (max-width: 520px) {
-      body { padding: 0; }
-      .invitation { border-radius: 0; }
     }
 
     /* ============================================
@@ -47,8 +45,8 @@
       width: 100%;
       max-width: 500px;
       box-shadow:
-        0 1.6rem 3rem -0.8rem rgba(15,8,4,0.5),
-        0 0.6rem 1.2rem -0.3rem rgba(15,8,4,0.35);
+        0 1.2rem 2.6rem -0.6rem rgba(0,0,0,0.55),
+        0 0 0 1px rgba(212,181,118,0.55);   /* thin gold frame line */
       border-radius: 0.2rem;
       overflow: hidden;
     }
@@ -56,6 +54,49 @@
       width: 100%;
       height: auto;
       display: block;
+    }
+
+    /* ============================================
+       FRAME · monogram (top) + date & place (bottom)
+       Fills the bands above/below the photo so the
+       wine space reads as a deliberate mat.
+       ============================================ */
+    .frame {
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      color: #e0c98f;
+      flex: 0 0 auto;
+    }
+    .monogram {
+      font-family: 'Pinyon Script', 'Cormorant Garamond', cursive;
+      font-size: clamp(2.6rem, 12vw, 3.6rem);
+      line-height: 1;
+      margin: 0;
+      color: #e6cf94;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+    }
+    .frame__rule {
+      width: 4.5rem; height: 1px; border: 0; margin: 0.55rem auto 0;
+      background: linear-gradient(90deg, transparent, rgba(212,181,118,0.85), transparent);
+    }
+    .frame__date {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(0.82rem, 3.7vw, 1.02rem);
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: #e6cf94;
+      margin: 0;
+      padding-left: 0.34em;               /* offset trailing letter-spacing */
+    }
+    .frame__place {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(0.74rem, 3.1vw, 0.92rem);
+      letter-spacing: 0.04em;
+      color: rgba(224,201,143,0.78);
+      margin: 0.32rem 0 0;
     }
 
     /* Each clickable zone */
@@ -292,10 +333,12 @@
       display: flex; align-items: center; justify-content: center; font-size: 1.7rem;
     }
 
-    /* Help banner — only shown briefly on first load */
+    /* Help banner — only shown briefly on first load (sits near the bottom
+       so it never collides with the monogram in the top band) */
     .hint {
       position: fixed;
-      top: 0.8rem;
+      top: auto;
+      bottom: calc(4.4rem + env(safe-area-inset-bottom));
       left: 50%;
       transform: translateX(-50%);
       background: rgba(28, 16, 8, 0.86);
@@ -322,6 +365,11 @@
 <body>
 
   <p class="hint">Toca las direcciones, el RSVP o la mesa de regalos</p>
+
+  <header class="frame frame--top">
+    <p class="monogram">T &amp; R</p>
+    <hr class="frame__rule" />
+  </header>
 
   <main class="invitation" aria-label="Invitación de boda de Tonantzin y Rafael">
     <img class="invitation__img"
@@ -370,6 +418,12 @@
     </button>
 
   </main>
+
+  <footer class="frame frame--bot">
+    <hr class="frame__rule" style="margin-bottom:0.55rem" />
+    <p class="frame__date">24 de Octubre de 2026</p>
+    <p class="frame__place">Zapopan, Jalisco</p>
+  </footer>
 
   <!-- ============================================================
        RSVP · bottom sheet (native <dialog>)
