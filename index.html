@@ -171,48 +171,43 @@
        días" line of the RSVP card. Opens the bottom sheet.
        Font uses cqw so it scales with the photo.
        ============================================ */
-    .rsvp-btn {
-      position: absolute;
-      top: 63.3%;
+    /* RSVP · invisible zone over the "Confirmar asistencia" button that is
+       printed in the artwork → opens the bottom sheet */
+    .zone--rsvp {
+      top: 63%;
       left: 11.5%;
       width: 26%;
-      height: 5.4%;
+      height: 4.6%;
+    }
+
+    /* COUPLE PHOTO · invisible zone over the Polaroid → opens the gallery */
+    .zone--foto {
+      top: 28%;
+      left: 8%;
+      width: 32%;
+      height: 24%;
+    }
+    /* small elegant "expand" badge hinting the photo opens a gallery */
+    .foto-badge {
+      position: absolute;
+      top: 45.5%;
+      left: 31.5%;
+      width: 7.5cqw;
+      height: 7.5cqw;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 0 0.3em;
-      margin: 0;
-      border: 1px solid #b8964f;                /* fine gold border */
-      border-radius: 0.35rem;
-      background: linear-gradient(180deg, #f7f0df 0%, #efe6d0 100%);  /* parchment, like the card */
-      color: #5a2330;                            /* wine text */
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 600;
-      font-style: italic;
-      font-size: 0.7rem;                         /* fallback if cqw unsupported */
-      font-size: clamp(0.5rem, 3cqw, 0.95rem);   /* scales with the photo */
-      line-height: 1.05;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      -webkit-appearance: none;
-      appearance: none;
-      box-shadow:
-        0 0.18rem 0.5rem rgba(40,20,10,0.35),       /* lift off the paper */
-        inset 0 0 0 1px rgba(255,255,255,0.45);     /* subtle inner highlight */
-      transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+      border-radius: 50%;
+      color: #e9d49a;
+      background: rgba(40, 20, 12, 0.5);
+      border: 1px solid rgba(230, 207, 148, 0.7);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+      pointer-events: none;              /* taps fall through to .zone--foto */
+      opacity: 0.92;
     }
-    .rsvp-btn:hover {
-      background: linear-gradient(180deg, #fbf5e7 0%, #f3ead7 100%);
-      box-shadow:
-        0 0.28rem 0.7rem rgba(40,20,10,0.45),
-        inset 0 0 0 1px rgba(255,255,255,0.5);
-    }
-    .rsvp-btn:active { transform: scale(0.97); }
-    .rsvp-btn:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 0.16rem rgba(184,150,79,0.9);
-    }
+    .foto-badge svg { display: block; width: 58%; height: 58%; }
 
     /* Tooltip with the destination, visible on hover/focus */
     .zone::after {
@@ -375,6 +370,119 @@
       display: flex; align-items: center; justify-content: center; font-size: 1.7rem;
     }
 
+    /* ============================================
+       GALLERY · elegant fullscreen lightbox / carousel
+       Opens when the couple photo is tapped. Swipe on
+       touch, arrows on desktop, Escape to close.
+       ============================================ */
+    .gallery {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      max-width: 100vw;
+      height: 100dvh;
+      max-height: 100dvh;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+    .gallery::backdrop {
+      background: rgba(18, 9, 7, 0.93);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+    .gallery__viewport { position: absolute; inset: 0; overflow: hidden; }
+    .gallery__track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.45s cubic-bezier(.22,.61,.36,1);
+      will-change: transform;
+    }
+    .gallery__slide {
+      flex: 0 0 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      padding:
+        calc(3.4rem + env(safe-area-inset-top)) 1.1rem
+        calc(3.2rem + env(safe-area-inset-bottom));
+    }
+    .gallery__img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 0.25rem;
+      box-shadow: 0 1.4rem 3rem rgba(0,0,0,0.6), 0 0 0 1px rgba(212,181,118,0.5);
+    }
+    .gallery__cap {
+      margin: 0;
+      color: #e6cf94;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      text-align: center;
+      min-height: 1.2em;
+    }
+    .gallery__close,
+    .gallery__nav {
+      position: absolute;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e9d49a;
+      background: rgba(40, 20, 12, 0.45);
+      border: 1px solid rgba(230, 207, 148, 0.5);
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .gallery__close {
+      top: calc(0.9rem + env(safe-area-inset-top));
+      right: 0.9rem;
+      width: 2.6rem; height: 2.6rem;
+      border-radius: 50%; font-size: 1.5rem; line-height: 1;
+    }
+    .gallery__nav {
+      top: 50%; transform: translateY(-50%);
+      width: 2.8rem; height: 2.8rem;
+      border-radius: 50%; font-size: 1.9rem; line-height: 1; padding-bottom: 0.15rem;
+    }
+    .gallery__nav--prev { left: 0.8rem; }
+    .gallery__nav--next { right: 0.8rem; }
+    .gallery__close:hover,
+    .gallery__nav:hover { background: rgba(90, 35, 48, 0.85); }
+    .gallery__nav:active { transform: translateY(-50%) scale(0.92); }
+    .gallery__counter {
+      position: absolute;
+      z-index: 3;
+      bottom: calc(1rem + env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%);
+      color: #e6cf94;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      letter-spacing: 0.28em;
+      font-size: 0.82rem;
+      padding: 0.3rem 0.85rem 0.3rem 1.1rem;
+      background: rgba(40, 20, 12, 0.5);
+      border: 1px solid rgba(230, 207, 148, 0.35);
+      border-radius: 999px;
+    }
+    .gallery--single .gallery__nav,
+    .gallery--single .gallery__counter { display: none; }
+    @media (prefers-reduced-motion: reduce) { .gallery__track { transition: none; } }
+
     /* Help banner — only shown briefly on first load (sits near the bottom
        so it never collides with the monogram in the top band) */
     .hint {
@@ -406,7 +514,7 @@
 </head>
 <body>
 
-  <p class="hint">Toca las direcciones, el RSVP o la mesa de regalos</p>
+  <p class="hint">Toca la foto, las direcciones o confirma tu asistencia</p>
 
   <header class="frame frame--top">
     <p class="monogram">T &amp; R</p>
@@ -448,14 +556,33 @@
       Abrir mesa de regalos en Liverpool
     </a>
 
-    <!-- 4 · RSVP → botón VISIBLE elegante que abre el bottom sheet -->
+    <!-- 4 · RSVP → zona invisible sobre el botón "Confirmar asistencia" impreso en la imagen -->
     <button type="button"
-       class="rsvp-btn"
+       class="zone zone--rsvp"
        id="rsvpOpen"
+       data-tip="Confirmar asistencia"
        aria-haspopup="dialog"
-       aria-controls="rsvpSheet">
+       aria-controls="rsvpSheet"
+       aria-label="Confirmar asistencia">
       Confirmar asistencia
     </button>
+
+    <!-- 5 · Foto de la pareja → galería de imágenes -->
+    <button type="button"
+       class="zone zone--foto"
+       id="galleryOpen"
+       data-tip="Ver galería"
+       aria-haspopup="dialog"
+       aria-controls="gallery"
+       aria-label="Abrir galería de fotos">
+      Ver galería de fotos
+    </button>
+    <span class="foto-badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+      </svg>
+    </span>
 
   </main>
 
@@ -521,6 +648,19 @@
   <!-- target oculto: el POST a Google Forms cae aquí sin recargar la página -->
   <iframe name="rsvp_gframe" id="rsvp_gframe" title="rsvp" aria-hidden="true"
           style="position:absolute;width:0;height:0;border:0;left:-9999px"></iframe>
+
+  <!-- ============================================================
+       GALERÍA · lightbox a pantalla completa (se llena desde JS)
+       ============================================================ -->
+  <dialog class="gallery" id="gallery" aria-label="Galería de fotos de Tonantzin y Rafael">
+    <div class="gallery__viewport">
+      <div class="gallery__track" id="galTrack"></div>
+    </div>
+    <button type="button" class="gallery__nav gallery__nav--prev" id="galPrev" aria-label="Foto anterior">&#8249;</button>
+    <button type="button" class="gallery__nav gallery__nav--next" id="galNext" aria-label="Foto siguiente">&#8250;</button>
+    <button type="button" class="gallery__close" id="galClose" aria-label="Cerrar galería">&times;</button>
+    <p class="gallery__counter" id="galCounter"></p>
+  </dialog>
 
   <script>
   (function () {
@@ -634,6 +774,84 @@
         : '¡Te esperamos el 24 de octubre! Tu confirmación quedó registrada.';
       sheet.classList.add('is-done');
     });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    /* ============================================================
+       GALERÍA · lista de fotos. Reemplaza/agrega tus imágenes:
+       deja los archivos en la carpeta images/ y lístalos aquí.
+       (Las 3 actuales son de ejemplo; cámbialas por fotos reales.)
+       ============================================================ */
+    const GALLERY = [
+      { src: "images/couple.jpeg", cap: "Tonantzin & Rafael" },
+      { src: "images/arch.jpeg",   cap: "" },
+      { src: "images/church.jpeg", cap: "" }
+    ];
+    /* ============================================================ */
+
+    const dlg = document.getElementById('gallery');
+    const openBtn = document.getElementById('galleryOpen');
+    if (!dlg || !openBtn || !GALLERY.length) return;
+
+    const track = document.getElementById('galTrack');
+    const counter = document.getElementById('galCounter');
+    const canDialog = typeof dlg.showModal === 'function';
+    let idx = 0;
+
+    GALLERY.forEach(function (item) {
+      const slide = document.createElement('div');
+      slide.className = 'gallery__slide';
+      const img = document.createElement('img');
+      img.className = 'gallery__img';
+      img.src = item.src;
+      img.alt = item.cap || 'Foto de Tonantzin y Rafael';
+      img.loading = 'lazy';
+      slide.appendChild(img);
+      if (item.cap) {
+        const cap = document.createElement('p');
+        cap.className = 'gallery__cap';
+        cap.textContent = item.cap;
+        slide.appendChild(cap);
+      }
+      track.appendChild(slide);
+    });
+    if (GALLERY.length < 2) dlg.classList.add('gallery--single');
+
+    function update() {
+      track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+      counter.textContent = (idx + 1) + ' / ' + GALLERY.length;
+    }
+    function go(n) { idx = (n + GALLERY.length) % GALLERY.length; update(); }
+    function open() { idx = 0; update(); canDialog ? dlg.showModal() : dlg.setAttribute('open', ''); }
+    function close() { canDialog ? dlg.close() : dlg.removeAttribute('open'); }
+
+    openBtn.addEventListener('click', open);
+    document.getElementById('galClose').addEventListener('click', close);
+    document.getElementById('galPrev').addEventListener('click', function () { go(idx - 1); });
+    document.getElementById('galNext').addEventListener('click', function () { go(idx + 1); });
+
+    // tap on the dark margin (not the image) closes
+    dlg.addEventListener('click', function (e) {
+      const t = e.target;
+      if (t === dlg || t.classList.contains('gallery__slide') ||
+          t.classList.contains('gallery__viewport') || t.classList.contains('gallery__track')) close();
+    });
+    dlg.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') go(idx + 1);
+      else if (e.key === 'ArrowLeft') go(idx - 1);
+    });
+
+    // swipe (touch)
+    let x0 = null;
+    dlg.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    dlg.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 45) go(dx < 0 ? idx + 1 : idx - 1);
+      x0 = null;
+    }, { passive: true });
   })();
   </script>
 
