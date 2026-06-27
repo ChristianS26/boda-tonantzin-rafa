@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tonantzin &amp; Rafael · 24 · X · 2026</title>
+  <meta name="description" content="Invitación de boda · Tonantzin y Rafael · 24 de octubre del 2026 · Zapopan, Jalisco." />
+  <meta name="theme-color" content="#8E9CA4" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Cormorant+SC:wght@400;500;600&family=Italianno&family=Pinyon+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================
+       SVG DEFINITIONS
+       ============================================ -->
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="paperGrain" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" />
+        <feColorMatrix values="0 0 0 0 0.18  0 0 0 0 0.10  0 0 0 0 0.06  0 0 0 0.10 0" />
+        <feComposite operator="in" in2="SourceGraphic" />
+      </filter>
+
+      <filter id="deckle">
+        <feTurbulence type="fractalNoise" baseFrequency="0.013 0.026" numOctaves="3" seed="7" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="16" />
+      </filter>
+
+      <filter id="deckleSoft">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02 0.04" numOctaves="2" seed="5" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+      </filter>
+
+      <filter id="waxRelief" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="bumps" />
+        <feDiffuseLighting in="bumps" lighting-color="#fff5d8" surfaceScale="2.5" diffuseConstant="1.4" result="light">
+          <feDistantLight azimuth="135" elevation="50" />
+        </feDiffuseLighting>
+        <feComposite in="light" in2="SourceGraphic" operator="in" result="lit" />
+        <feBlend in="SourceGraphic" in2="lit" mode="multiply" />
+      </filter>
+
+      <radialGradient id="waxBody" cx="32%" cy="24%" r="82%">
+        <stop offset="0%" stop-color="#D9A968" />
+        <stop offset="22%" stop-color="#B68240" />
+        <stop offset="55%" stop-color="#7A5318" />
+        <stop offset="80%" stop-color="#4A2E0F" />
+        <stop offset="100%" stop-color="#1F1107" />
+      </radialGradient>
+
+      <radialGradient id="waxVignette" cx="50%" cy="50%" r="52%">
+        <stop offset="65%" stop-color="rgba(255,255,255,0)" />
+        <stop offset="95%" stop-color="rgba(20,10,2,0.4)" />
+        <stop offset="100%" stop-color="rgba(10,5,2,0.7)" />
+      </radialGradient>
+
+      <!-- True 3D bevel filter (specular lighting follows surface) -->
+      <filter id="waxRaised" x="-8%" y="-8%" width="116%" height="116%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="blur" />
+        <feSpecularLighting in="blur" surfaceScale="5" specularConstant="1" specularExponent="22" lighting-color="#FFEAC4" result="spec">
+          <feDistantLight azimuth="135" elevation="38" />
+        </feSpecularLighting>
+        <feComposite in="spec" in2="SourceAlpha" operator="in" result="specClipped" />
+        <feComposite in="SourceGraphic" in2="specClipped" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" />
+      </filter>
+
+      <!-- Engraved (debossed) filter for the monogram -->
+      <filter id="waxEngraved">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="0.55" result="b" />
+        <feSpecularLighting in="b" surfaceScale="-3.5" specularConstant="0.95" specularExponent="26" lighting-color="#FFE5BC" result="s">
+          <feDistantLight azimuth="135" elevation="32" />
+        </feSpecularLighting>
+        <feComposite in="s" in2="SourceAlpha" operator="in" result="sc" />
+        <feComposite in="SourceGraphic" in2="sc" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" />
+      </filter>
+
+      <!-- Fine surface grain for the wax -->
+      <filter id="waxGrain">
+        <feTurbulence type="fractalNoise" baseFrequency="2.2" numOctaves="2" seed="6" />
+        <feColorMatrix values="0 0 0 0 0.18  0 0 0 0 0.10  0 0 0 0 0.04  0 0 0 0.22 0" />
+        <feComposite in2="SourceGraphic" operator="in" />
+      </filter>
+
+      <symbol id="flourish" viewBox="0 0 240 28">
+        <g fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10,14 C40,14 60,4 90,14 C100,18 105,18 115,14" />
+          <path d="M120,14 C130,10 135,10 145,14 C175,24 195,14 230,14" />
+          <circle cx="118" cy="14" r="1.8" fill="currentColor" />
+          <path d="M115,14 C117,12 119,12 121,14" />
+          <path d="M119,14 C121,16 119,16 117,14" />
+          <path d="M70,11 C72,8 75,8 77,11" />
+          <path d="M163,17 C165,20 168,20 170,17" />
+          <path d="M48,16 C50,18 52,18 54,16" />
+          <path d="M186,12 C188,10 190,10 192,12" />
+        </g>
+      </symbol>
+
+      <!-- Wax seal · TR monogram, real 3D specular relief -->
+      <symbol id="waxSealTR" viewBox="0 0 64 64">
+        <!-- Soft contact shadow under the seal -->
+        <ellipse cx="34" cy="61" rx="29" ry="2.4" fill="rgba(8,4,2,0.42)" />
+
+        <!-- Wax body with raised 3D bevel (real specular lighting) -->
+        <g filter="url(#waxRaised)">
+          <path d="M 32,3 C 41,2 50,5.5 55.5,12.5 C 60.5,18 62.5,25.5 60.5,33 C 63,40 60,48 53.5,53 C 48.5,57 41,59.5 33,59.5 C 25,60.5 17,58 11.5,52.5 C 6,47.5 3,40 4.5,32.5 C 2.5,25 6,16 12,11 C 17.5,6 25,3 32,3 Z"
+                fill="url(#waxBody)" />
+        </g>
+
+        <!-- Edge vignette (rim darkening) -->
+        <path d="M 32,3 C 41,2 50,5.5 55.5,12.5 C 60.5,18 62.5,25.5 60.5,33 C 63,40 60,48 53.5,53 C 48.5,57 41,59.5 33,59.5 C 25,60.5 17,58 11.5,52.5 C 6,47.5 3,40 4.5,32.5 C 2.5,25 6,16 12,11 C 17.5,6 25,3 32,3 Z"
+              fill="url(#waxVignette)" />
+
+        <!-- Micro-grain texture on wax -->
+        <path d="M 32,3 C 41,2 50,5.5 55.5,12.5 C 60.5,18 62.5,25.5 60.5,33 C 63,40 60,48 53.5,53 C 48.5,57 41,59.5 33,59.5 C 25,60.5 17,58 11.5,52.5 C 6,47.5 3,40 4.5,32.5 C 2.5,25 6,16 12,11 C 17.5,6 25,3 32,3 Z"
+              fill="rgba(50,30,8,0.5)" filter="url(#waxGrain)" opacity="0.4" />
+
+        <!-- Subtle surface cracks (natural wax imperfections) -->
+        <g opacity="0.4" stroke="#1A0E04" stroke-width="0.22" fill="none" stroke-linecap="round">
+          <path d="M 13,22 Q 17,20 21,23" />
+          <path d="M 43,12 Q 47,11 50,15" />
+          <path d="M 50,42 Q 53,40 55,44" />
+          <path d="M 10,42 Q 13,44 12,48" />
+        </g>
+
+        <!-- Tiny air-bubble inclusions -->
+        <g fill="rgba(20,10,2,0.4)">
+          <circle cx="20" cy="46" r="0.5" />
+          <circle cx="48" cy="22" r="0.42" />
+          <circle cx="42" cy="50" r="0.34" />
+          <circle cx="15" cy="30" r="0.28" />
+          <circle cx="46" cy="38" r="0.3" />
+        </g>
+
+        <!-- TR Monogram · Allura (Spencerian), refined dual-layer engraving -->
+        <g text-anchor="middle" font-family="'Allura', 'Italianno', cursive" font-weight="400" font-size="24">
+          <!-- light highlight (catches inner wall of depression) -->
+          <text x="32.4" y="40.4" fill="rgba(245,210,150,0.6)">TR</text>
+          <!-- dark engraving (top layer) -->
+          <text x="32" y="40" fill="#1A0E04">TR</text>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================================
+       WIZARD SHELL
+       ============================================ -->
+  <div class="wizard-shell">
+
+    <!-- HEADER · branding + skip a RSVP -->
+    <header class="wizard-shell__header">
+      <a href="#apertura" class="wizard-shell__brand" data-step-link="0">
+        <span class="wizard-shell__monogram">T<i>&amp;</i>R</span>
+        <span class="wizard-shell__date">24 · X · 2026</span>
+      </a>
+      <a href="#confirmar" class="wizard-shell__skip" data-step-link="5">
+        <span>Confirmar</span>
+        <svg viewBox="0 0 16 12" aria-hidden="true">
+          <path d="M1 6h13M9 1l5 5l-5 5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </header>
+
+    <!-- WIZARD · steps -->
+    <main class="wizard" id="wizard">
+
+      <button class="wizard__arrow wizard__arrow--prev" id="prevBtn" type="button" aria-label="Paso anterior">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M6 20L16 10L26 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="wizard__track" id="wizardTrack">
+
+        <!-- ============================================
+             STEP 1 · APERTURA
+             ============================================ -->
+        <section class="wizard__step scene scene--hero" id="apertura" aria-label="Apertura" data-step="0">
+          <div class="wizard__step-content">
+
+            <div class="stamps stamps--hero" aria-hidden="true">
+              <div class="stamp stamp--a">
+                <span class="stamp__inner">
+                  <span class="stamp__num">26</span>
+                  <span class="stamp__city">MEXICO</span>
+                </span>
+              </div>
+              <div class="stamp stamp--b">
+                <span class="stamp__inner stamp__inner--alt">
+                  <span class="stamp__num">10</span>
+                  <span class="stamp__city">JAL · 2026</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="hero-collage">
+
+              <figure class="polaroid polaroid--arch" style="--tilt: -7deg;">
+                <div class="polaroid__photo polaroid__photo--arch" role="img" aria-label="Arco de piedra en el jardín">
+                  <svg viewBox="0 0 100 130" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                      <linearGradient id="archSky" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#B4C5BE" />
+                        <stop offset="40%" stop-color="#869B92" />
+                        <stop offset="100%" stop-color="#506C5C" />
+                      </linearGradient>
+                      <linearGradient id="archStone" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#A89A82" />
+                        <stop offset="55%" stop-color="#8B7D68" />
+                        <stop offset="100%" stop-color="#6A5E4C" />
+                      </linearGradient>
+                      <linearGradient id="archStoneSh" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="rgba(60,45,30,0.35)" />
+                        <stop offset="45%" stop-color="rgba(60,45,30,0)" />
+                        <stop offset="100%" stop-color="rgba(0,0,0,0.45)" />
+                      </linearGradient>
+                      <radialGradient id="archInGlow" cx="50%" cy="62%" r="55%">
+                        <stop offset="0%" stop-color="#E6D5A0" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="#E6D5A0" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="archVig" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(15,10,5,0.45)" />
+                        <stop offset="40%" stop-color="rgba(15,10,5,0)" />
+                        <stop offset="100%" stop-color="rgba(10,5,2,0.55)" />
+                      </linearGradient>
+                    </defs>
+                    <rect width="100" height="130" fill="url(#archSky)" />
+                    <!-- clouds -->
+                    <ellipse cx="22" cy="14" rx="20" ry="3" fill="#DDE5DE" opacity="0.45" />
+                    <ellipse cx="72" cy="9" rx="16" ry="2.5" fill="#DDE5DE" opacity="0.4" />
+                    <ellipse cx="85" cy="20" rx="13" ry="1.8" fill="#DDE5DE" opacity="0.32" />
+                    <!-- distant horizon -->
+                    <path d="M0,52 L18,44 L32,50 L48,40 L62,46 L80,42 L100,46 L100,72 L0,72 Z" fill="#637E70" opacity="0.55" />
+                    <!-- background trees (lighter, further) -->
+                    <g opacity="0.7">
+                      <ellipse cx="8" cy="62" rx="14" ry="22" fill="#4E6856" />
+                      <ellipse cx="22" cy="48" rx="10" ry="18" fill="#577760" />
+                      <ellipse cx="93" cy="55" rx="14" ry="22" fill="#506E58" />
+                      <ellipse cx="78" cy="42" rx="9" ry="16" fill="#587A5E" />
+                      <ellipse cx="40" cy="55" rx="6" ry="10" fill="#5D7B62" />
+                      <ellipse cx="62" cy="52" rx="6" ry="11" fill="#5A7860" />
+                    </g>
+                    <!-- main left tree clump -->
+                    <g>
+                      <ellipse cx="14" cy="74" rx="18" ry="38" fill="#2E4438" />
+                      <ellipse cx="22" cy="58" rx="13" ry="24" fill="#3A5044" />
+                      <ellipse cx="4" cy="65" rx="10" ry="26" fill="#283A30" />
+                      <ellipse cx="18" cy="48" rx="6" ry="9" fill="#3D5642" opacity="0.7" />
+                      <ellipse cx="10" cy="45" rx="4" ry="7" fill="#456052" opacity="0.65" />
+                      <ellipse cx="26" cy="65" rx="5" ry="8" fill="#3D5642" opacity="0.65" />
+                      <ellipse cx="13" cy="80" rx="6" ry="9" fill="#1F2C26" opacity="0.7" />
+                      <path d="M 14,90 Q 18,82 22,76" stroke="#1F2C26" stroke-width="0.5" fill="none" opacity="0.5" />
+                    </g>
+                    <!-- main right tree clump -->
+                    <g>
+                      <ellipse cx="88" cy="72" rx="16" ry="40" fill="#2D4234" />
+                      <ellipse cx="78" cy="56" rx="11" ry="24" fill="#3A5044" />
+                      <ellipse cx="98" cy="62" rx="8" ry="28" fill="#243528" />
+                      <ellipse cx="82" cy="48" rx="5" ry="8" fill="#3D5642" opacity="0.7" />
+                      <ellipse cx="92" cy="42" rx="4" ry="7" fill="#456052" opacity="0.65" />
+                      <ellipse cx="74" cy="60" rx="5" ry="8" fill="#3D5642" opacity="0.65" />
+                      <ellipse cx="86" cy="78" rx="6" ry="9" fill="#1F2C26" opacity="0.7" />
+                    </g>
+                    <!-- glow inside arch -->
+                    <circle cx="50" cy="85" r="20" fill="url(#archInGlow)" />
+                    <!-- arch -->
+                    <path d="M 30,130 L 30,80 A 20,20 0 0 1 70,80 L 70,130 Z" fill="url(#archStone)" />
+                    <path d="M 35,130 L 35,82 A 15,16 0 0 1 65,82 L 65,130 Z" fill="#3F5847" />
+                    <path d="M 38,130 L 38,85 A 12,14 0 0 1 62,85 L 62,130 Z" fill="#9CB098" opacity="0.55" />
+                    <ellipse cx="50" cy="120" rx="8" ry="6" fill="#C0D4B0" opacity="0.4" />
+                    <!-- voussoir lines (radiating stones around the arch crown) -->
+                    <g stroke="#5D5040" stroke-width="0.35" fill="none">
+                      <path d="M 35,82 L 31,72" />
+                      <path d="M 40,76 L 38,68" />
+                      <path d="M 45,73 L 44,65" />
+                      <path d="M 50,71 L 50,64" />
+                      <path d="M 55,73 L 56,65" />
+                      <path d="M 60,76 L 62,68" />
+                      <path d="M 65,82 L 69,72" />
+                    </g>
+                    <!-- stone block courses -->
+                    <g stroke="#5D5040" stroke-width="0.3" opacity="0.75">
+                      <line x1="30" y1="92" x2="35" y2="92" />
+                      <line x1="30" y1="102" x2="35" y2="102" />
+                      <line x1="30" y1="112" x2="35" y2="112" />
+                      <line x1="30" y1="122" x2="35" y2="122" />
+                      <line x1="65" y1="92" x2="70" y2="92" />
+                      <line x1="65" y1="102" x2="70" y2="102" />
+                      <line x1="65" y1="112" x2="70" y2="112" />
+                      <line x1="65" y1="122" x2="70" y2="122" />
+                    </g>
+                    <!-- left highlight -->
+                    <path d="M 30,130 L 30,80 A 20,20 0 0 1 38,68" fill="none" stroke="#C5B59A" stroke-width="0.6" opacity="0.7" />
+                    <!-- right shadow overlay -->
+                    <path d="M 30,130 L 30,80 A 20,20 0 0 1 70,80 L 70,130 Z" fill="url(#archStoneSh)" />
+                    <!-- moss & weathering spots -->
+                    <g fill="#3E5642" opacity="0.5">
+                      <ellipse cx="32" cy="95" rx="2" ry="3" />
+                      <ellipse cx="68" cy="92" rx="2" ry="3" />
+                      <ellipse cx="33" cy="115" rx="1.6" ry="2.5" />
+                      <ellipse cx="67" cy="108" rx="1.6" ry="2.4" />
+                    </g>
+                    <!-- climbing vines + leaves -->
+                    <g fill="none" stroke="#3D5042" stroke-width="0.4" opacity="0.78">
+                      <path d="M 32,128 Q 30,118 32,108 Q 31,98 34,86" />
+                      <path d="M 68,128 Q 70,116 68,106 Q 69,94 66,84" />
+                    </g>
+                    <g fill="#54724E" opacity="0.8">
+                      <circle cx="31" cy="118" r="1" />
+                      <circle cx="33" cy="108" r="0.9" />
+                      <circle cx="32" cy="98" r="1" />
+                      <circle cx="35" cy="88" r="0.9" />
+                      <circle cx="69" cy="116" r="0.9" />
+                      <circle cx="67" cy="106" r="1" />
+                      <circle cx="69" cy="94" r="0.9" />
+                      <circle cx="66" cy="86" r="1" />
+                    </g>
+                    <!-- foreground grass + grass blades -->
+                    <rect x="0" y="118" width="100" height="12" fill="#4A5A38" />
+                    <g stroke="#6A7A4A" stroke-width="0.3" opacity="0.7">
+                      <line x1="2" y1="125" x2="3" y2="120" />
+                      <line x1="6" y1="126" x2="7" y2="121" />
+                      <line x1="11" y1="125" x2="12" y2="120" />
+                      <line x1="76" y1="124" x2="77" y2="120" />
+                      <line x1="82" y1="125" x2="83" y2="120" />
+                      <line x1="89" y1="126" x2="90" y2="121" />
+                      <line x1="95" y1="125" x2="96" y2="120" />
+                    </g>
+                    <!-- stone path -->
+                    <path d="M 34,130 L 42,123 L 58,123 L 66,130 Z" fill="#8E7E62" />
+                    <path d="M 37,130 L 44,124 L 56,124 L 63,130 Z" fill="#A89880" opacity="0.55" />
+                    <g stroke="#5D4F38" stroke-width="0.25" opacity="0.55">
+                      <line x1="42" y1="125" x2="58" y2="125" />
+                      <line x1="40" y1="128" x2="60" y2="128" />
+                    </g>
+                    <!-- distant birds -->
+                    <g fill="none" stroke="#3D352A" stroke-width="0.4" stroke-linecap="round" opacity="0.7">
+                      <path d="M 62,28 Q 64,26 66,28 Q 68,26 70,28" />
+                      <path d="M 74,32 Q 75,31 76,32 Q 77,31 78,32" />
+                      <path d="M 50,22 Q 51,21 52,22 Q 53,21 54,22" />
+                    </g>
+                    <!-- diffuse light rays through arch -->
+                    <g opacity="0.28">
+                      <line x1="50" y1="74" x2="43" y2="122" stroke="#F0E0B8" stroke-width="0.4" />
+                      <line x1="50" y1="74" x2="50" y2="125" stroke="#F0E0B8" stroke-width="0.4" />
+                      <line x1="50" y1="74" x2="57" y2="122" stroke="#F0E0B8" stroke-width="0.4" />
+                    </g>
+                    <rect width="100" height="130" fill="url(#archVig)" />
+                    <rect width="100" height="130" fill="#C9985E" opacity="0.07" />
+                  </svg>
+                </div>
+              </figure>
+
+              <div class="paper paper--wine paper--deckled paper--underlay" aria-hidden="true"></div>
+
+              <article class="paper paper--cream paper--deckled hero-card">
+
+                <span class="wax-seal wax-seal--top-card" aria-hidden="true">
+                  <svg viewBox="0 0 64 64"><use href="#waxSealTR" /></svg>
+                </span>
+
+                <svg class="flourish flourish--card-top" viewBox="0 0 240 28" aria-hidden="true">
+                  <use href="#flourish" />
+                </svg>
+
+                <h1 class="names">
+                  <span class="names__line">Tonantzin</span>
+                  <span class="names__amp">&amp;</span>
+                  <span class="names__line">Rafael</span>
+                </h1>
+
+                <p class="hero-intro">
+                  Con la bendición de Dios y de nuestros padres,
+                  tenemos el honor de invitarles a celebrar
+                  nuestra unión en matrimonio el día
+                </p>
+
+                <p class="hero-date">
+                  <span class="hero-date__day">24</span>
+                  <span class="hero-date__rest">de <em>octubre</em> del 2026</span>
+                </p>
+
+                <p class="hero-place"><span>Zapopan</span><i>·</i><span>Jalisco</span></p>
+
+                <svg class="flourish flourish--card-bottom" viewBox="0 0 240 28" aria-hidden="true">
+                  <use href="#flourish" />
+                </svg>
+              </article>
+
+              <figure class="polaroid polaroid--couple" style="--tilt: -5deg;">
+                <div class="polaroid__photo polaroid__photo--couple" role="img" aria-label="Foto de los novios">
+                  <svg viewBox="0 0 100 130" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                      <linearGradient id="lakeSky" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#3A2440" />
+                        <stop offset="25%" stop-color="#7E4344" />
+                        <stop offset="50%" stop-color="#C58662" />
+                        <stop offset="68%" stop-color="#A66848" />
+                        <stop offset="82%" stop-color="#2E1A14" />
+                        <stop offset="100%" stop-color="#0F0808" />
+                      </linearGradient>
+                      <radialGradient id="lakeSun" cx="55%" cy="48%" r="38%">
+                        <stop offset="0%" stop-color="#FFEACE" stop-opacity="0.95" />
+                        <stop offset="30%" stop-color="#F4C087" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="#F4C087" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="lakeWater" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#3A2418" />
+                        <stop offset="50%" stop-color="#180D08" />
+                        <stop offset="100%" stop-color="#080404" />
+                      </linearGradient>
+                      <linearGradient id="lakeVig" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(20,5,5,0.45)" />
+                        <stop offset="35%" stop-color="rgba(20,5,5,0)" />
+                        <stop offset="100%" stop-color="rgba(10,5,3,0.55)" />
+                      </linearGradient>
+                    </defs>
+                    <rect width="100" height="130" fill="url(#lakeSky)" />
+                    <!-- sun glow + visible disc -->
+                    <circle cx="55" cy="58" r="40" fill="url(#lakeSun)" />
+                    <circle cx="55" cy="58" r="6.5" fill="#FFEACE" opacity="0.85" />
+                    <circle cx="55" cy="58" r="3.5" fill="#FFF5DC" />
+                    <!-- dark cloud streaks -->
+                    <g fill="#3A1E20" opacity="0.55">
+                      <ellipse cx="28" cy="40" rx="28" ry="1.8" />
+                      <ellipse cx="72" cy="38" rx="20" ry="1.6" />
+                      <ellipse cx="50" cy="48" rx="42" ry="0.9" />
+                      <ellipse cx="80" cy="52" rx="22" ry="0.7" />
+                    </g>
+                    <!-- warm cloud highlights -->
+                    <g fill="#FFD6A2" opacity="0.4">
+                      <ellipse cx="40" cy="44" rx="18" ry="0.7" />
+                      <ellipse cx="75" cy="50" rx="14" ry="0.6" />
+                    </g>
+                    <!-- distant mountains -->
+                    <path d="M 0,68 L 12,60 L 22,64 L 28,58 L 35,64 L 35,80 L 0,80 Z" fill="#1E1410" opacity="0.7" />
+                    <path d="M 100,68 L 85,62 L 75,66 L 68,60 L 60,64 L 60,80 L 100,80 Z" fill="#1E1410" opacity="0.7" />
+                    <!-- city skyline silhouette -->
+                    <path d="M0,75 L3,73 L3,70 L5,70 L5,75 L7,75 L7,68 L9,68 L9,71 L11,71 L11,66 L13,66 L13,75 L16,75 L16,71 L19,71 L19,74 L22,74 L22,68 L24,68 L24,72 L28,72 L28,74 L34,74 L34,71 L37,71 L37,75 L39,75 L39,73 L42,73 L42,76 L45,76 L45,72 L48,72 L48,75 L52,75 L52,73 L57,73 L57,76 L60,76 L60,72 L63,72 L63,75 L67,75 L67,70 L70,70 L70,73 L73,73 L73,76 L77,76 L77,72 L80,72 L80,74 L83,74 L83,71 L86,71 L86,74 L89,74 L89,76 L93,76 L93,73 L96,73 L96,75 L100,75 L100,85 L0,85 Z" fill="#0E0806" opacity="0.95" />
+                    <!-- window lights in city -->
+                    <g fill="#FFD584" opacity="0.55">
+                      <rect x="4" y="72" width="0.5" height="0.5" />
+                      <rect x="11" y="68" width="0.4" height="0.4" />
+                      <rect x="18" y="73" width="0.4" height="0.4" />
+                      <rect x="22" y="70" width="0.4" height="0.4" />
+                      <rect x="35" y="73" width="0.4" height="0.4" />
+                      <rect x="40" y="75" width="0.4" height="0.4" />
+                      <rect x="44" y="74" width="0.4" height="0.4" />
+                      <rect x="58" y="74" width="0.4" height="0.4" />
+                      <rect x="64" y="73" width="0.4" height="0.4" />
+                      <rect x="74" y="74" width="0.4" height="0.4" />
+                      <rect x="78" y="73" width="0.4" height="0.4" />
+                      <rect x="85" y="73" width="0.4" height="0.4" />
+                      <rect x="91" y="74" width="0.4" height="0.4" />
+                    </g>
+                    <!-- water -->
+                    <rect y="85" width="100" height="45" fill="url(#lakeWater)" />
+                    <!-- sun reflection on water -->
+                    <ellipse cx="55" cy="88" rx="22" ry="2" fill="#D49060" opacity="0.45" />
+                    <ellipse cx="55" cy="95" rx="14" ry="1.4" fill="#B47040" opacity="0.32" />
+                    <ellipse cx="55" cy="102" rx="8" ry="0.9" fill="#90562C" opacity="0.25" />
+                    <ellipse cx="55" cy="108" rx="5" ry="0.6" fill="#90562C" opacity="0.18" />
+                    <!-- water ripples -->
+                    <g stroke="rgba(220,200,160,0.18)" stroke-width="0.35" fill="none">
+                      <path d="M0,90 Q25,89 50,90 T100,90" />
+                      <path d="M0,100 Q30,99 60,100 T100,100" />
+                      <path d="M0,110 Q20,109 45,110 T100,110" />
+                      <path d="M0,120 Q35,119 65,120 T100,120" />
+                    </g>
+                    <!-- couple embracing (anatomic silhouettes) -->
+                    <g transform="translate(34, 50)">
+                      <g fill="#050202">
+                        <path d="M 2.5,7 Q 2,3 5,1 Q 8,-0.5 11,1 Q 13.5,3 13,7 L 13,11 Q 12,12 11,11 L 11,13 L 4,13 L 4,11 Q 3,12 2.5,11 Z" />
+                        <rect x="5" y="11" width="3" height="3" />
+                        <path d="M 1,15 Q 0,17 0,20 L 0.5,40 L 12.5,40 L 13,20 Q 13,17 12,15 Q 10,13.5 8,13.5 L 5,13.5 Q 3,13.5 1,15 Z" />
+                      </g>
+                      <path d="M 6,13.5 L 6,17 L 7,17 L 7,13.5 Z" fill="#7A6048" opacity="0.45" />
+                      <g fill="#0A0606">
+                        <path d="M 13,6 Q 12.5,2 16,0.5 Q 19.5,-0.5 22,1.5 Q 24,4 23,7 L 23,13 Q 24,17 23,20 L 22,17 Q 21,14 18,14 Q 15,14 14,17 L 13,20 Q 12,17 13,13 Z" />
+                        <rect x="16.5" y="10" width="3" height="3.5" />
+                        <path d="M 13.5,13.5 Q 11.5,15.5 11.5,18.5 L 12.5,24 L 11,32 L 8.5,40 L 27,40 L 24.5,32 L 23,24 L 24,18.5 Q 24,15.5 22,13.5 Z" />
+                      </g>
+                      <!-- rim light from sun -->
+                      <g fill="rgba(255,200,140,0.32)">
+                        <ellipse cx="13" cy="6" rx="0.8" ry="3" />
+                        <ellipse cx="23" cy="8" rx="0.8" ry="4" />
+                        <ellipse cx="0.5" cy="20" rx="0.6" ry="4" />
+                        <ellipse cx="27" cy="24" rx="0.6" ry="4" />
+                      </g>
+                    </g>
+                    <!-- sun rim glow around couple -->
+                    <ellipse cx="46" cy="58" rx="14" ry="6" fill="rgba(255,200,140,0.22)" />
+                    <!-- foreground rocks -->
+                    <path d="M 0,118 Q 4,114 8,116 Q 14,112 22,118 L 22,130 L 0,130 Z" fill="#080404" />
+                    <path d="M 100,122 Q 95,117 88,120 Q 82,114 75,120 L 75,130 L 100,130 Z" fill="#080404" />
+                    <!-- sparkles in air -->
+                    <g fill="#FFEACF" opacity="0.6">
+                      <circle cx="22" cy="48" r="0.4" />
+                      <circle cx="80" cy="35" r="0.3" />
+                      <circle cx="35" cy="36" r="0.3" />
+                      <circle cx="68" cy="42" r="0.4" />
+                      <circle cx="15" cy="56" r="0.3" />
+                      <circle cx="86" cy="55" r="0.3" />
+                      <circle cx="42" cy="32" r="0.25" />
+                      <circle cx="60" cy="30" r="0.25" />
+                    </g>
+                    <!-- distant birds -->
+                    <g fill="none" stroke="#180A08" stroke-width="0.4" stroke-linecap="round" opacity="0.65">
+                      <path d="M 22,26 Q 23,25 24,26 Q 25,25 26,26" />
+                      <path d="M 78,22 Q 79,21 80,22 Q 81,21 82,22" />
+                      <path d="M 30,18 Q 30.5,17.5 31,18 Q 31.5,17.5 32,18" />
+                    </g>
+                    <rect width="100" height="130" fill="url(#lakeVig)" />
+                  </svg>
+                </div>
+              </figure>
+            </div>
+
+            <div class="swipe-cue" id="swipeCue">
+              <span class="swipe-cue__text">Desliza para continuar</span>
+              <svg viewBox="0 0 12 28" aria-hidden="true">
+                <path d="M6 1v22M1 17l5 6l5-6" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================
+             STEP 2 · CEREMONIA RELIGIOSA
+             ============================================ -->
+        <section class="wizard__step scene scene--event" id="ceremonia" aria-label="Ceremonia Religiosa" data-step="1">
+          <div class="wizard__step-content">
+
+            <p class="step-eyebrow">Paso 2 · Ceremonia</p>
+
+            <div class="event-composition">
+
+              <figure class="polaroid polaroid--event" style="--tilt: 4deg;">
+                <div class="polaroid__photo" role="img" aria-label="Templo Nuestra Señora de Monserrat">
+                  <svg viewBox="0 0 100 130" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                      <linearGradient id="churchSky" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#E8DCC0" />
+                        <stop offset="50%" stop-color="#C8B89A" />
+                        <stop offset="100%" stop-color="#A09078" />
+                      </linearGradient>
+                      <linearGradient id="churchWall" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#9B7C5A" />
+                        <stop offset="55%" stop-color="#7E6045" />
+                        <stop offset="100%" stop-color="#604730" />
+                      </linearGradient>
+                      <linearGradient id="churchWallSh" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="rgba(255,220,180,0.18)" />
+                        <stop offset="40%" stop-color="rgba(255,220,180,0)" />
+                        <stop offset="100%" stop-color="rgba(20,10,5,0.28)" />
+                      </linearGradient>
+                      <linearGradient id="churchRoof" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#7A5238" />
+                        <stop offset="100%" stop-color="#4D3220" />
+                      </linearGradient>
+                      <radialGradient id="churchSun" cx="78%" cy="20%" r="38%">
+                        <stop offset="0%" stop-color="#FFEACE" stop-opacity="0.55" />
+                        <stop offset="100%" stop-color="#FFEACE" stop-opacity="0" />
+                      </radialGradient>
+                      <linearGradient id="churchVig" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(20,15,10,0.4)" />
+                        <stop offset="35%" stop-color="rgba(20,15,10,0)" />
+                        <stop offset="100%" stop-color="rgba(10,5,2,0.55)" />
+                      </linearGradient>
+                    </defs>
+                    <rect width="100" height="130" fill="url(#churchSky)" />
+                    <ellipse cx="78" cy="20" rx="32" ry="22" fill="url(#churchSun)" />
+                    <!-- soft clouds -->
+                    <g fill="#F4EAD0" opacity="0.45">
+                      <ellipse cx="18" cy="20" rx="14" ry="2.2" />
+                      <ellipse cx="42" cy="13" rx="18" ry="2" />
+                      <ellipse cx="68" cy="25" rx="14" ry="2" />
+                    </g>
+                    <!-- distant hills layered -->
+                    <path d="M0,72 L20,62 L40,68 L65,58 L85,64 L100,60 L100,80 L0,80 Z" fill="#7E8C72" opacity="0.55" />
+                    <path d="M0,78 L25,70 L50,74 L75,68 L100,72 L100,90 L0,90 Z" fill="#5C6A4E" opacity="0.6" />
+                    <!-- background tree mass -->
+                    <g opacity="0.85">
+                      <ellipse cx="12" cy="105" rx="14" ry="20" fill="#3A4D3E" />
+                      <ellipse cx="88" cy="108" rx="14" ry="20" fill="#3D5042" />
+                      <ellipse cx="20" cy="98" rx="6" ry="11" fill="#4A5E4A" />
+                      <ellipse cx="80" cy="100" rx="6" ry="11" fill="#4A5E4A" />
+                    </g>
+                    <!-- cypress trees flanking church -->
+                    <ellipse cx="22" cy="92" rx="3.5" ry="14" fill="#2C3D2E" />
+                    <ellipse cx="78" cy="92" rx="3.5" ry="14" fill="#2C3D2E" />
+                    <ellipse cx="22" cy="86" rx="2.5" ry="6" fill="#3A5042" />
+                    <ellipse cx="78" cy="86" rx="2.5" ry="6" fill="#3A5042" />
+                    <!-- main nave -->
+                    <rect x="32" y="58" width="36" height="52" fill="url(#churchWall)" />
+                    <rect x="32" y="58" width="36" height="52" fill="url(#churchWallSh)" />
+                    <!-- nave roof -->
+                    <polygon points="30,60 50,38 70,60" fill="url(#churchRoof)" />
+                    <line x1="30" y1="60" x2="70" y2="60" stroke="#3A2418" stroke-width="0.6" />
+                    <path d="M 32,60 L 68,60" stroke="#3D2820" stroke-width="0.4" />
+                    <g stroke="#5C3A24" stroke-width="0.15" opacity="0.55">
+                      <line x1="32" y1="55" x2="50" y2="40" />
+                      <line x1="40" y1="48" x2="50" y2="38" />
+                      <line x1="68" y1="55" x2="50" y2="40" />
+                      <line x1="60" y1="48" x2="50" y2="38" />
+                    </g>
+                    <!-- bell tower -->
+                    <rect x="46" y="20" width="8" height="40" fill="url(#churchWall)" />
+                    <rect x="46" y="20" width="8" height="40" fill="url(#churchWallSh)" />
+                    <polygon points="44,22 50,8 56,22" fill="url(#churchRoof)" />
+                    <!-- cross at top -->
+                    <line x1="50" y1="8" x2="50" y2="2" stroke="#3D2820" stroke-width="0.6" />
+                    <line x1="48" y1="4" x2="52" y2="4" stroke="#3D2820" stroke-width="0.5" />
+                    <!-- bell arch + bell -->
+                    <rect x="47.2" y="28" width="5.6" height="8" fill="#1A0E08" rx="2.8 2.8 0 0" />
+                    <line x1="50" y1="28" x2="50" y2="36" stroke="#3D2820" stroke-width="0.3" />
+                    <path d="M 49,31 L 49,34 Q 49,35 50,35 Q 51,35 51,34 L 51,31 Z" fill="#A88245" opacity="0.85" />
+                    <!-- clock face -->
+                    <circle cx="50" cy="42" r="2.2" fill="#E0D5BA" />
+                    <circle cx="50" cy="42" r="2.2" fill="none" stroke="#3D2820" stroke-width="0.3" />
+                    <line x1="50" y1="42" x2="50" y2="40.5" stroke="#3D2820" stroke-width="0.25" />
+                    <line x1="50" y1="42" x2="51.2" y2="42" stroke="#3D2820" stroke-width="0.25" />
+                    <!-- main arched door -->
+                    <path d="M 46,110 L 46,88 A 4,5 0 0 1 54,88 L 54,110 Z" fill="#2D1810" />
+                    <path d="M 47,110 L 47,89 A 3,4 0 0 1 53,89 L 53,110 Z" fill="#1A0E08" />
+                    <line x1="50" y1="84" x2="50" y2="110" stroke="#6A4630" stroke-width="0.3" />
+                    <line x1="47" y1="100" x2="53" y2="100" stroke="#6A4630" stroke-width="0.25" />
+                    <circle cx="51.5" cy="100" r="0.45" fill="#C9A557" />
+                    <!-- rose window -->
+                    <circle cx="50" cy="72" r="3.5" fill="#E0D0A8" />
+                    <circle cx="50" cy="72" r="3.5" fill="none" stroke="#3D2820" stroke-width="0.3" />
+                    <line x1="50" y1="68.5" x2="50" y2="75.5" stroke="#3D2820" stroke-width="0.25" />
+                    <line x1="46.5" y1="72" x2="53.5" y2="72" stroke="#3D2820" stroke-width="0.25" />
+                    <line x1="47.5" y1="69.5" x2="52.5" y2="74.5" stroke="#3D2820" stroke-width="0.2" />
+                    <line x1="52.5" y1="69.5" x2="47.5" y2="74.5" stroke="#3D2820" stroke-width="0.2" />
+                    <!-- side windows -->
+                    <path d="M 36,82 L 36,74 A 2,2.5 0 0 1 40,74 L 40,82 Z" fill="#5C4630" />
+                    <path d="M 60,82 L 60,74 A 2,2.5 0 0 1 64,74 L 64,82 Z" fill="#5C4630" />
+                    <line x1="38" y1="76" x2="38" y2="82" stroke="#3D2820" stroke-width="0.2" />
+                    <line x1="62" y1="76" x2="62" y2="82" stroke="#3D2820" stroke-width="0.2" />
+                    <!-- cornice -->
+                    <rect x="32" y="60" width="36" height="2" fill="#3D2820" />
+                    <rect x="32" y="86" width="36" height="0.6" fill="#5C3A28" opacity="0.55" />
+                    <rect x="32" y="58" width="2" height="52" fill="#3D2820" opacity="0.4" />
+                    <rect x="66" y="58" width="2" height="52" fill="rgba(0,0,0,0.35)" />
+                    <!-- plaza -->
+                    <rect y="110" width="100" height="20" fill="#7A5C40" />
+                    <rect y="110" width="100" height="2" fill="#5C4030" />
+                    <!-- cobblestone pattern -->
+                    <g stroke="#4A3220" stroke-width="0.25" opacity="0.55">
+                      <line x1="0" y1="116" x2="100" y2="116" />
+                      <line x1="0" y1="122" x2="100" y2="122" />
+                      <path d="M 4,113 L 4,116 M 12,113 L 12,116 M 20,113 L 20,116 M 28,113 L 28,116 M 36,113 L 36,116 M 44,113 L 44,116 M 52,113 L 52,116 M 60,113 L 60,116 M 68,113 L 68,116 M 76,113 L 76,116 M 84,113 L 84,116 M 92,113 L 92,116" />
+                      <path d="M 8,118 L 8,121 M 16,118 L 16,121 M 24,118 L 24,121 M 32,118 L 32,121 M 40,118 L 40,121 M 48,118 L 48,121 M 56,118 L 56,121 M 64,118 L 64,121 M 72,118 L 72,121 M 80,118 L 80,121 M 88,118 L 88,121 M 96,118 L 96,121" />
+                    </g>
+                    <!-- birds -->
+                    <g fill="none" stroke="#3D2820" stroke-width="0.4" stroke-linecap="round" opacity="0.7">
+                      <path d="M 18,22 Q 19,21 20,22 Q 21,21 22,22" />
+                      <path d="M 28,16 Q 29,15 30,16 Q 31,15 32,16" />
+                    </g>
+                    <rect width="100" height="130" fill="url(#churchVig)" />
+                    <rect width="100" height="130" fill="#C9985E" opacity="0.06" />
+                  </svg>
+                </div>
+                <figcaption class="polaroid__caption">Monserrat · 04:00 pm</figcaption>
+              </figure>
+
+              <article class="paper paper--cream paper--deckled event-card">
+                <span class="wax-seal wax-seal--card-corner" aria-hidden="true">
+                  <svg viewBox="0 0 64 64"><use href="#waxSealTR" /></svg>
+                </span>
+
+                <p class="event-card__eyebrow">Ceremonia Religiosa</p>
+
+                <p class="event-card__time">
+                  <span class="event-card__hour">04:00</span>
+                  <em>de la tarde</em>
+                </p>
+
+                <p class="event-card__venue">Templo Nuestra Señora<br />de Monserrat</p>
+
+                <p class="event-card__address">
+                  Pablo Casals<br />
+                  Las Cañadas, Zapopan, Jal.
+                </p>
+
+                <a class="button button--map"
+                   href="https://www.google.com/maps/search/?api=1&query=Templo+Nuestra+Senora+de+Monserrat+Las+Canadas+Zapopan+Jalisco"
+                   target="_blank" rel="noopener noreferrer">
+                  <span class="button__pin" aria-hidden="true">◈</span>
+                  <span class="button__label">Cómo llegar</span>
+                </a>
+              </article>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================
+             STEP 3 · RECEPCIÓN
+             ============================================ -->
+        <section class="wizard__step scene scene--event scene--recepcion" id="recepcion" aria-label="Recepción" data-step="2">
+          <div class="wizard__step-content">
+
+            <p class="step-eyebrow">Paso 3 · Recepción</p>
+
+            <div class="event-composition event-composition--reverse">
+
+              <article class="paper paper--wine paper--deckled event-card event-card--wine">
+                <span class="wax-seal wax-seal--card-corner" aria-hidden="true">
+                  <svg viewBox="0 0 64 64"><use href="#waxSealTR" /></svg>
+                </span>
+
+                <p class="event-card__banner">Recepción</p>
+
+                <p class="event-card__eyebrow event-card__eyebrow--light">Hacienda Arcadia</p>
+
+                <div class="event-card__schedule">
+                  <div class="event-card__row">
+                    <span class="event-card__row-time">05:30 <em>pm</em></span>
+                    <span class="event-card__row-label">Ceremonia Civil</span>
+                  </div>
+                  <div class="event-card__row">
+                    <span class="event-card__row-time">06:30 <em>pm</em></span>
+                    <span class="event-card__row-label">Cena &amp; Baile</span>
+                  </div>
+                </div>
+
+                <p class="event-card__address event-card__address--light">
+                  Priv. Ignacio Sandoval #24<br />
+                  La Tarjea, Zapopan, Jal.
+                </p>
+
+                <a class="button button--map button--light"
+                   href="https://www.google.com/maps/search/?api=1&query=Hacienda+Arcadia+La+Tarjea+Zapopan+Jalisco"
+                   target="_blank" rel="noopener noreferrer">
+                  <span class="button__pin" aria-hidden="true">◈</span>
+                  <span class="button__label">Cómo llegar a la hacienda</span>
+                </a>
+              </article>
+
+              <figure class="hacienda-illustration" aria-label="Ilustración de la Hacienda Arcadia">
+                <svg viewBox="0 0 320 220">
+                  <defs>
+                    <linearGradient id="hacSky" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#F0E2C6" />
+                      <stop offset="55%" stop-color="#D6BE96" />
+                      <stop offset="100%" stop-color="#A88A66" />
+                    </linearGradient>
+                    <linearGradient id="hacWall" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#F8EDD2" />
+                      <stop offset="55%" stop-color="#E2C99E" />
+                      <stop offset="100%" stop-color="#B89878" />
+                    </linearGradient>
+                    <linearGradient id="hacWallSh" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="rgba(255,235,200,0.32)" />
+                      <stop offset="35%" stop-color="rgba(255,235,200,0)" />
+                      <stop offset="100%" stop-color="rgba(40,20,10,0.28)" />
+                    </linearGradient>
+                    <linearGradient id="hacRoof" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#B85A40" />
+                      <stop offset="100%" stop-color="#783028" />
+                    </linearGradient>
+                    <radialGradient id="hacSun" cx="78%" cy="22%" r="42%">
+                      <stop offset="0%" stop-color="#FFEACE" stop-opacity="0.5" />
+                      <stop offset="100%" stop-color="#FFEACE" stop-opacity="0" />
+                    </radialGradient>
+                    <linearGradient id="hacVig" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(15,10,5,0.32)" />
+                      <stop offset="40%" stop-color="rgba(15,10,5,0)" />
+                      <stop offset="100%" stop-color="rgba(10,5,2,0.5)" />
+                    </linearGradient>
+                    <pattern id="hacCobble" x="0" y="0" width="16" height="6" patternUnits="userSpaceOnUse">
+                      <line x1="0" y1="0" x2="16" y2="0" stroke="#7A5234" stroke-width="0.3" opacity="0.5" />
+                      <line x1="4" y1="0" x2="4" y2="3" stroke="#7A5234" stroke-width="0.2" opacity="0.4" />
+                      <line x1="10" y1="0" x2="10" y2="3" stroke="#7A5234" stroke-width="0.2" opacity="0.4" />
+                      <line x1="0" y1="3" x2="16" y2="3" stroke="#7A5234" stroke-width="0.3" opacity="0.45" />
+                      <line x1="7" y1="3" x2="7" y2="6" stroke="#7A5234" stroke-width="0.2" opacity="0.4" />
+                      <line x1="13" y1="3" x2="13" y2="6" stroke="#7A5234" stroke-width="0.2" opacity="0.4" />
+                    </pattern>
+                  </defs>
+
+                  <!-- sky + atmosphere -->
+                  <rect width="320" height="220" fill="url(#hacSky)" />
+                  <ellipse cx="248" cy="48" rx="80" ry="55" fill="url(#hacSun)" />
+                  <g fill="#F4EAD0" opacity="0.55">
+                    <ellipse cx="60" cy="35" rx="34" ry="3.5" />
+                    <ellipse cx="180" cy="22" rx="40" ry="3" />
+                    <ellipse cx="280" cy="50" rx="30" ry="2.5" />
+                    <ellipse cx="110" cy="55" rx="22" ry="2" />
+                  </g>
+
+                  <!-- distant mountains -->
+                  <path d="M0,130 L40,110 L80,118 L130,100 L180,115 L220,98 L270,108 L320,102 L320,150 L0,150 Z" fill="#A39782" opacity="0.55" />
+                  <path d="M0,140 L50,128 L100,134 L160,124 L210,130 L260,122 L320,128 L320,160 L0,160 Z" fill="#827568" opacity="0.6" />
+
+                  <!-- background tree masses -->
+                  <g opacity="0.75">
+                    <ellipse cx="40" cy="135" rx="28" ry="38" fill="#516E4C" />
+                    <ellipse cx="280" cy="130" rx="30" ry="40" fill="#4D6A48" />
+                    <ellipse cx="65" cy="125" rx="14" ry="22" fill="#5E7A55" />
+                    <ellipse cx="255" cy="122" rx="16" ry="24" fill="#5E7A55" />
+                  </g>
+
+                  <!-- big tree left -->
+                  <g>
+                    <line x1="30" y1="180" x2="32" y2="100" stroke="#4A3A28" stroke-width="2.2" />
+                    <line x1="35" y1="140" x2="42" y2="100" stroke="#4A3A28" stroke-width="1.5" opacity="0.7" />
+                    <line x1="25" y1="145" x2="18" y2="105" stroke="#4A3A28" stroke-width="1.4" opacity="0.7" />
+                    <path d="M32,100 Q15,90 8,75 M32,100 Q50,88 60,72 M32,100 Q20,85 14,70 M32,100 Q45,82 52,68 M32,100 Q30,75 22,60 M32,100 Q42,72 38,55" stroke="#3D5040" stroke-width="2" fill="none" stroke-linecap="round" />
+                    <g fill="#46604A" opacity="0.95">
+                      <ellipse cx="14" cy="74" rx="12" ry="14" />
+                      <ellipse cx="32" cy="64" rx="14" ry="18" />
+                      <ellipse cx="50" cy="74" rx="11" ry="14" />
+                      <ellipse cx="42" cy="50" rx="9" ry="12" />
+                      <ellipse cx="22" cy="56" rx="8" ry="11" />
+                    </g>
+                    <g fill="#587550" opacity="0.7">
+                      <ellipse cx="22" cy="68" rx="6" ry="8" />
+                      <ellipse cx="40" cy="58" rx="5" ry="7" />
+                    </g>
+                  </g>
+
+                  <!-- big tree right -->
+                  <g>
+                    <line x1="290" y1="180" x2="288" y2="105" stroke="#4A3A28" stroke-width="2.2" />
+                    <line x1="285" y1="145" x2="278" y2="105" stroke="#4A3A28" stroke-width="1.5" opacity="0.7" />
+                    <line x1="295" y1="150" x2="302" y2="110" stroke="#4A3A28" stroke-width="1.4" opacity="0.7" />
+                    <path d="M288,105 Q272,93 263,80 M288,105 Q304,93 312,80 M288,105 Q275,90 270,75 M288,105 Q300,90 308,75 M288,105 Q288,80 280,68 M288,105 Q294,82 300,62" stroke="#3D5040" stroke-width="2" fill="none" stroke-linecap="round" />
+                    <g fill="#46604A" opacity="0.95">
+                      <ellipse cx="270" cy="80" rx="12" ry="14" />
+                      <ellipse cx="290" cy="68" rx="14" ry="18" />
+                      <ellipse cx="305" cy="80" rx="11" ry="14" />
+                      <ellipse cx="280" cy="56" rx="8" ry="11" />
+                      <ellipse cx="300" cy="56" rx="9" ry="12" />
+                    </g>
+                    <g fill="#587550" opacity="0.7">
+                      <ellipse cx="278" cy="74" rx="6" ry="8" />
+                      <ellipse cx="298" cy="66" rx="5" ry="7" />
+                    </g>
+                  </g>
+
+                  <!-- side wings -->
+                  <rect x="55" y="125" width="40" height="55" fill="url(#hacWall)" />
+                  <rect x="55" y="125" width="40" height="55" fill="url(#hacWallSh)" />
+                  <polygon points="48,128 60,108 95,108 100,128" fill="url(#hacRoof)" />
+                  <rect x="225" y="125" width="40" height="55" fill="url(#hacWall)" />
+                  <rect x="225" y="125" width="40" height="55" fill="url(#hacWallSh)" />
+                  <polygon points="220,128 225,108 260,108 272,128" fill="url(#hacRoof)" />
+
+                  <!-- main building -->
+                  <rect x="60" y="115" width="200" height="65" fill="url(#hacWall)" />
+                  <rect x="60" y="115" width="200" height="65" fill="url(#hacWallSh)" />
+                  <polygon points="50,118 60,98 260,98 270,118" fill="url(#hacRoof)" />
+                  <rect x="50" y="115" width="220" height="6" fill="#8A4030" />
+                  <g stroke="#A04830" stroke-width="0.25" opacity="0.65">
+                    <path d="M 56,116 L 60,100 M 66,116 L 70,100 M 76,116 L 80,100 M 86,116 L 90,100 M 96,116 L 100,100 M 106,116 L 110,100 M 116,116 L 120,100 M 126,116 L 130,100 M 136,116 L 140,100 M 146,116 L 150,100 M 156,116 L 160,100 M 166,116 L 170,100 M 176,116 L 180,100 M 186,116 L 190,100 M 196,116 L 200,100 M 206,116 L 210,100 M 216,116 L 220,100 M 226,116 L 230,100 M 236,116 L 240,100 M 246,116 L 250,100 M 256,116 L 260,100" />
+                  </g>
+
+                  <!-- central tower / chapel facade -->
+                  <rect x="145" y="78" width="30" height="40" fill="url(#hacWall)" />
+                  <rect x="145" y="78" width="30" height="40" fill="url(#hacWallSh)" />
+                  <polygon points="138,82 160,58 182,82" fill="url(#hacRoof)" />
+                  <g stroke="#A04830" stroke-width="0.25" opacity="0.6">
+                    <line x1="143" y1="80" x2="160" y2="60" />
+                    <line x1="148" y1="80" x2="160" y2="62" />
+                    <line x1="153" y1="80" x2="160" y2="64" />
+                    <line x1="172" y1="80" x2="160" y2="62" />
+                    <line x1="167" y1="80" x2="160" y2="64" />
+                  </g>
+                  <!-- finial -->
+                  <rect x="156" y="55" width="8" height="6" fill="url(#hacRoof)" />
+                  <path d="M 156,55 Q 160,53 164,55" fill="url(#hacRoof)" />
+                  <rect x="158" y="50" width="4" height="2.5" fill="#3D2820" />
+                  <line x1="160" y1="50" x2="160" y2="42" stroke="#5A2820" stroke-width="1.2" />
+                  <line x1="158" y1="44" x2="162" y2="44" stroke="#5A2820" stroke-width="0.9" />
+                  <!-- chapel rose window -->
+                  <circle cx="160" cy="92" r="3.5" fill="#5C3D24" />
+                  <circle cx="160" cy="92" r="3.5" fill="none" stroke="#3D2820" stroke-width="0.4" />
+                  <line x1="160" y1="88.5" x2="160" y2="95.5" stroke="#3D2820" stroke-width="0.3" />
+                  <line x1="156.5" y1="92" x2="163.5" y2="92" stroke="#3D2820" stroke-width="0.3" />
+
+                  <!-- arcade (5 arches with deep shadow inside) -->
+                  <path d="M75,180 L75,150 A12,18 0 0 1 99,150 L99,180 Z" fill="#5E3A28" />
+                  <path d="M77,178 L77,151 A10,16 0 0 1 97,151 L97,178 Z" fill="#2D1810" />
+                  <path d="M111,180 L111,150 A12,18 0 0 1 135,150 L135,180 Z" fill="#5E3A28" />
+                  <path d="M113,178 L113,151 A10,16 0 0 1 133,151 L133,178 Z" fill="#2D1810" />
+                  <path d="M147,180 L147,150 A12,18 0 0 1 171,150 L171,180 Z" fill="#5E3A28" />
+                  <path d="M149,178 L149,151 A10,16 0 0 1 169,151 L169,178 Z" fill="#2D1810" />
+                  <path d="M183,180 L183,150 A12,18 0 0 1 207,150 L207,180 Z" fill="#5E3A28" />
+                  <path d="M185,178 L185,151 A10,16 0 0 1 205,151 L205,178 Z" fill="#2D1810" />
+                  <path d="M219,180 L219,150 A12,18 0 0 1 243,150 L243,180 Z" fill="#5E3A28" />
+                  <path d="M221,178 L221,151 A10,16 0 0 1 241,151 L241,178 Z" fill="#2D1810" />
+                  <!-- columns between arches with capitals/bases -->
+                  <rect x="100" y="148" width="10" height="32" fill="#D2B790" />
+                  <rect x="100" y="148" width="10" height="32" fill="url(#hacWallSh)" />
+                  <rect x="136" y="148" width="10" height="32" fill="#D2B790" />
+                  <rect x="136" y="148" width="10" height="32" fill="url(#hacWallSh)" />
+                  <rect x="172" y="148" width="10" height="32" fill="#D2B790" />
+                  <rect x="172" y="148" width="10" height="32" fill="url(#hacWallSh)" />
+                  <rect x="208" y="148" width="10" height="32" fill="#D2B790" />
+                  <rect x="208" y="148" width="10" height="32" fill="url(#hacWallSh)" />
+                  <g fill="#3D2820">
+                    <rect x="98" y="146" width="14" height="2" />
+                    <rect x="134" y="146" width="14" height="2" />
+                    <rect x="170" y="146" width="14" height="2" />
+                    <rect x="206" y="146" width="14" height="2" />
+                  </g>
+                  <g fill="#5C3A28">
+                    <rect x="98" y="178" width="14" height="2" />
+                    <rect x="134" y="178" width="14" height="2" />
+                    <rect x="170" y="178" width="14" height="2" />
+                    <rect x="206" y="178" width="14" height="2" />
+                  </g>
+
+                  <!-- cornices -->
+                  <rect x="60" y="118" width="200" height="1.2" fill="#3D2820" opacity="0.45" />
+                  <rect x="60" y="143" width="200" height="1" fill="#3D2820" opacity="0.4" />
+
+                  <!-- side windows -->
+                  <rect x="62" y="138" width="8" height="14" fill="#3D2820" />
+                  <line x1="66" y1="138" x2="66" y2="152" stroke="#1A0E08" stroke-width="0.4" />
+                  <line x1="62" y1="145" x2="70" y2="145" stroke="#1A0E08" stroke-width="0.4" />
+                  <rect x="250" y="138" width="8" height="14" fill="#3D2820" />
+                  <line x1="254" y1="138" x2="254" y2="152" stroke="#1A0E08" stroke-width="0.4" />
+                  <line x1="250" y1="145" x2="258" y2="145" stroke="#1A0E08" stroke-width="0.4" />
+
+                  <!-- climbing plants on walls -->
+                  <g fill="#3D5040" opacity="0.85">
+                    <ellipse cx="60" cy="170" rx="4" ry="8" />
+                    <ellipse cx="260" cy="170" rx="4" ry="8" />
+                    <ellipse cx="58" cy="160" rx="3" ry="5" />
+                    <ellipse cx="262" cy="158" rx="3" ry="5" />
+                  </g>
+                  <g stroke="#3D5040" stroke-width="0.4" fill="none" opacity="0.7">
+                    <path d="M 60,178 Q 64,165 62,150 Q 60,138 64,128" />
+                    <path d="M 260,178 Q 256,165 258,150 Q 260,138 256,128" />
+                  </g>
+
+                  <!-- plaza with cobblestone pattern -->
+                  <rect y="180" width="320" height="40" fill="#9B8460" />
+                  <rect y="180" width="320" height="40" fill="url(#hacCobble)" />
+                  <!-- path leading toward central door -->
+                  <path d="M 130,220 L 152,180 L 188,180 L 210,220 Z" fill="#B89878" opacity="0.5" />
+
+                  <!-- foreground potted plants -->
+                  <ellipse cx="70" cy="195" rx="6" ry="3" fill="#3A4A28" opacity="0.85" />
+                  <ellipse cx="70" cy="192" rx="4" ry="3" fill="#5E7A48" />
+                  <ellipse cx="250" cy="195" rx="6" ry="3" fill="#3A4A28" opacity="0.85" />
+                  <ellipse cx="250" cy="192" rx="4" ry="3" fill="#5E7A48" />
+
+                  <!-- birds in sky -->
+                  <g fill="none" stroke="#3D352A" stroke-width="0.5" stroke-linecap="round" opacity="0.7">
+                    <path d="M 105,38 Q 108,35 111,38 Q 114,35 117,38" />
+                    <path d="M 130,30 Q 132,28 134,30 Q 136,28 138,30" />
+                    <path d="M 195,42 Q 197,40 199,42 Q 201,40 203,42" />
+                  </g>
+
+                  <rect width="320" height="220" fill="#F0E2C6" opacity="0.05" />
+                  <rect width="320" height="220" fill="url(#hacVig)" />
+
+                  <text x="160" y="208" text-anchor="middle" font-family="'Pinyon Script', cursive" font-size="18" fill="#4A2E1E">Hacienda Arcadia</text>
+                </svg>
+              </figure>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================
+             STEP 4 · VESTIMENTA & DETALLES
+             ============================================ -->
+        <section class="wizard__step scene scene--detalles" id="detalles" aria-label="Vestimenta y Detalles" data-step="3">
+          <div class="wizard__step-content">
+
+            <p class="step-eyebrow">Paso 4 · Detalles</p>
+
+            <div class="detalles-collage">
+
+              <div class="fan-tag">
+                <svg class="fan-tag__shape" viewBox="0 0 200 240" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="fanGreen" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#5A6E4F" />
+                      <stop offset="100%" stop-color="#3E5037" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M 100,8 C 130,8 160,24 175,52 C 185,72 188,92 188,112 L 188,205 Q 188,215 178,215 L 22,215 Q 12,215 12,205 L 12,112 C 12,92 15,72 25,52 C 40,24 70,8 100,8 Z" fill="url(#fanGreen)" stroke="#2E3D28" stroke-width="0.8" />
+                  <g fill="none" stroke="#B89455" stroke-width="0.8" opacity="0.85">
+                    <path d="M 100,18 C 126,18 152,32 165,58 C 174,76 178,94 178,114 L 178,200 L 22,200 L 22,114 C 22,94 26,76 35,58 C 48,32 74,18 100,18 Z" />
+                  </g>
+                  <circle cx="100" cy="40" r="3" fill="#B89455" />
+                  <path d="M 80,42 Q 100,30 120,42" stroke="#B89455" stroke-width="0.6" fill="none" />
+                </svg>
+
+                <div class="fan-tag__content">
+                  <p class="fan-tag__eyebrow">Código de</p>
+                  <h3 class="fan-tag__title">Vestimenta</h3>
+                  <p class="fan-tag__value">Formal</p>
+                  <p class="fan-tag__note">
+                    Damas · vestido largo<br />
+                    Caballeros · traje oscuro
+                  </p>
+                </div>
+
+                <div class="fan-tag__tassel" aria-hidden="true">
+                  <svg viewBox="0 0 20 32">
+                    <line x1="10" y1="0" x2="10" y2="8" stroke="#B89455" stroke-width="1.5" />
+                    <ellipse cx="10" cy="10.5" rx="4.5" ry="2.6" fill="#9E7A3C" />
+                    <g stroke="#B89455" stroke-width="0.7" stroke-linecap="round">
+                      <line x1="6" y1="12.5" x2="5" y2="26" />
+                      <line x1="8" y1="12.5" x2="7.5" y2="28" />
+                      <line x1="10" y1="12.5" x2="10" y2="29" />
+                      <line x1="12" y1="12.5" x2="12.5" y2="28" />
+                      <line x1="14" y1="12.5" x2="15" y2="26" />
+                      <line x1="7" y1="12.5" x2="6" y2="27" />
+                      <line x1="13" y1="12.5" x2="14" y2="27" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+
+              <article class="paper paper--cream paper--deckled notes-card">
+                <p class="notes-card__eyebrow">Notas Importantes</p>
+
+                <div class="notes-card__item">
+                  <p class="notes-card__title"><em>Evento sin niños</em></p>
+                  <p class="notes-card__body">
+                    Hemos planeado una velada exclusivamente para adultos.
+                  </p>
+                </div>
+
+                <div class="notes-card__divider" aria-hidden="true">
+                  <svg viewBox="0 0 240 28"><use href="#flourish" /></svg>
+                </div>
+
+                <div class="notes-card__item">
+                  <p class="notes-card__title"><em>Llegada puntual</em></p>
+                  <p class="notes-card__body">
+                    Les pedimos llegar 15 minutos antes a la ceremonia religiosa.
+                  </p>
+                </div>
+
+                <div class="notes-card__divider" aria-hidden="true">
+                  <svg viewBox="0 0 240 28"><use href="#flourish" /></svg>
+                </div>
+
+                <div class="notes-card__item">
+                  <p class="notes-card__title"><em>Estacionamiento</em></p>
+                  <p class="notes-card__body">
+                    La hacienda cuenta con estacionamiento privado.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================
+             STEP 5 · MESA DE REGALOS
+             ============================================ -->
+        <section class="wizard__step scene scene--regalos" id="regalos" aria-label="Mesa de Regalos" data-step="4">
+          <div class="wizard__step-content">
+
+            <p class="step-eyebrow">Paso 5 · Mesa de Regalos</p>
+
+            <article class="paper paper--cream paper--deckled regalos-card">
+
+              <p class="regalos-card__eyebrow">Mesa de Regalos</p>
+
+              <p class="regalos-card__lead">
+                <em>«El mejor regalo es su presencia»</em>
+              </p>
+
+              <p class="regalos-card__body">
+                Si además desean obsequiarnos algo, hemos preparado nuestra mesa de regalos en Liverpool.
+              </p>
+
+              <a class="button button--primary button--liverpool"
+                 href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/52001892"
+                 target="_blank" rel="noopener noreferrer">
+                <span class="button__pin" aria-hidden="true">◈</span>
+                <span class="button__label">Abrir mesa en Liverpool</span>
+              </a>
+
+              <div class="event-code">
+                <p class="event-code__label">Número de evento</p>
+                <p class="event-code__number">52001892</p>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ============================================
+             STEP 6 · CONFIRMACIÓN · RSVP
+             ============================================ -->
+        <section class="wizard__step scene scene--rsvp" id="confirmar" aria-label="Confirmación de Asistencia" data-step="5">
+          <div class="wizard__step-content">
+
+            <p class="step-eyebrow">Paso 6 · Confirmación</p>
+
+            <div class="rsvp-collage">
+              <div class="paper paper--wine paper--deckled rsvp-underlay" aria-hidden="true"></div>
+
+              <article class="paper paper--cream paper--deckled rsvp-card">
+
+                <span class="wax-seal wax-seal--top-card" aria-hidden="true">
+                  <svg viewBox="0 0 64 64"><use href="#waxSealTR" /></svg>
+                </span>
+
+                <p class="rsvp-card__eyebrow">R · S · V · P</p>
+                <h2 class="rsvp-card__title">Confirma tu asistencia</h2>
+
+                <svg class="flourish flourish--small" viewBox="0 0 240 28" aria-hidden="true"><use href="#flourish" /></svg>
+
+                <p class="rsvp-card__intro">
+                  Tu presencia es nuestro mayor regalo.
+                  Responde antes del <strong>20 de septiembre del 2026.</strong>
+                </p>
+
+                <form class="rsvp-form" id="rsvpForm" novalidate>
+
+                  <label class="field">
+                    <span class="field__label">Nombre completo</span>
+                    <input class="field__input" type="text" name="name" autocomplete="name" required />
+                  </label>
+
+                  <fieldset class="field field--choice">
+                    <legend class="field__label">¿Nos acompañarás?</legend>
+                    <div class="choice-row">
+                      <label class="radio">
+                        <input type="radio" name="attend" value="si" required />
+                        <span class="radio__indicator" aria-hidden="true"></span>
+                        <span class="radio__label"><em>Sí, con todo el corazón</em></span>
+                      </label>
+                      <label class="radio">
+                        <input type="radio" name="attend" value="no" />
+                        <span class="radio__indicator" aria-hidden="true"></span>
+                        <span class="radio__label"><em>No podré asistir</em></span>
+                      </label>
+                    </div>
+                  </fieldset>
+
+                  <div class="field-row">
+                    <label class="field">
+                      <span class="field__label">Personas</span>
+                      <select class="field__input field__input--select" name="guests">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                      </select>
+                    </label>
+
+                    <label class="field">
+                      <span class="field__label">Teléfono</span>
+                      <input class="field__input" type="tel" name="phone" autocomplete="tel" />
+                    </label>
+                  </div>
+
+                  <button type="submit" class="button button--primary button--submit">
+                    <span class="button__pin" aria-hidden="true">◈</span>
+                    <span class="button__label">Enviar confirmación</span>
+                  </button>
+
+                  <p class="rsvp-form__success" hidden>
+                    <em>Gracias por confirmar.</em>
+                  </p>
+                </form>
+
+                <p class="rsvp-card__note">Gracias por ser parte de nuestra historia</p>
+              </article>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ============================================
+             STEP 7 · DESPEDIDA
+             ============================================ -->
+        <section class="wizard__step scene scene--despedida" id="despedida" aria-label="Despedida" data-step="6">
+          <div class="wizard__step-content">
+
+            <div class="despedida">
+
+              <svg class="flourish" viewBox="0 0 240 28" aria-hidden="true"><use href="#flourish" /></svg>
+
+              <p class="despedida__quote">
+                <em>«Donde tú vayas, iré yo;<br />
+                donde tú vivas, viviré.»</em>
+              </p>
+              <p class="despedida__source">— Rut 1·16</p>
+
+              <span class="wax-seal wax-seal--despedida" aria-hidden="true">
+                <svg viewBox="0 0 64 64"><use href="#waxSealTR" /></svg>
+              </span>
+
+              <p class="despedida__signature">
+                <span class="despedida__line">con cariño,</span>
+                <span class="despedida__names">Tonantzin &amp; Rafael</span>
+              </p>
+
+              <p class="despedida__date">24 · octubre · 2026 · Zapopan, Jalisco</p>
+
+              <svg class="flourish flourish--flip" viewBox="0 0 240 28" aria-hidden="true"><use href="#flourish" /></svg>
+
+              <a href="#apertura" class="despedida__back" data-step-link="0">
+                <svg viewBox="0 0 18 12" aria-hidden="true">
+                  <path d="M17 6H1M7 1L1 6l6 5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Volver al inicio</span>
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+      <button class="wizard__arrow wizard__arrow--next" id="nextBtn" type="button" aria-label="Siguiente paso">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M6 12L16 22L26 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </main>
+
+    <!-- FOOTER · indicador de progreso -->
+    <footer class="wizard-shell__footer">
+      <div class="wizard-progress" role="tablist" aria-label="Pasos">
+        <button class="wizard-progress__dot is-active" data-step="0" aria-label="Apertura" type="button"></button>
+        <button class="wizard-progress__dot" data-step="1" aria-label="Ceremonia" type="button"></button>
+        <button class="wizard-progress__dot" data-step="2" aria-label="Recepción" type="button"></button>
+        <button class="wizard-progress__dot" data-step="3" aria-label="Detalles" type="button"></button>
+        <button class="wizard-progress__dot" data-step="4" aria-label="Regalos" type="button"></button>
+        <button class="wizard-progress__dot" data-step="5" aria-label="Confirmar" type="button"></button>
+        <button class="wizard-progress__dot" data-step="6" aria-label="Despedida" type="button"></button>
+      </div>
+      <p class="wizard-progress__label">
+        <span class="wizard-progress__num"><span id="stepCurrent">1</span> de 7</span>
+        <span class="wizard-progress__sep" aria-hidden="true">·</span>
+        <span class="wizard-progress__name" id="stepName">Apertura</span>
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

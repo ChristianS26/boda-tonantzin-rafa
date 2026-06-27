@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tonantzin &amp; Rafael · Invitación</title>
+  <meta name="description" content="Invitación de boda · Tonantzin y Rafael · 24 de octubre del 2026" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Cormorant+SC:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================
+       RESET + BASE
+       ========================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    img, svg { display: block; max-width: 100%; }
+
+    :root {
+      --paper-cream: #F1E7D3;
+      --paper-cream-warm: #E5D6B8;
+      --paper-edge: #C5B591;
+      --wine-deep: #2C0E15;
+      --wine-mid: #3E1620;
+      --wine-bright: #5A2330;
+      --gold-bright: #D4B576;
+      --gold-mid: #B89455;
+      --gold-deep: #8B6A2E;
+      --ink-deep: #2D1810;
+      --ink-mid: #4A2E1E;
+      --ink-soft: #6B4A36;
+      --green-tag: #4C5E40;
+      --green-tag-deep: #344226;
+      --font-script: 'Pinyon Script', cursive;
+      --font-serif:  'Cormorant Garamond', Georgia, serif;
+      --font-caps:   'Cormorant SC', 'Cormorant Garamond', serif;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: var(--font-serif);
+      color: var(--ink-deep);
+      line-height: 1.4;
+      background-color: #B4B5B0;
+      background-image:
+        radial-gradient(ellipse 800px 600px at 18% 12%, rgba(60,55,48,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 700px 600px at 85% 25%, rgba(50,48,40,0.2)  0%, transparent 50%),
+        radial-gradient(ellipse 800px 600px at 25% 82%, rgba(60,55,45,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 950px 700px at 92% 92%, rgba(50,45,38,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 600px 500px at 55% 40%, rgba(232,222,200,0.38) 0%, transparent 55%),
+        radial-gradient(ellipse 500px 400px at 80% 65%, rgba(218,205,180,0.32) 0%, transparent 50%),
+        radial-gradient(ellipse 700px 500px at 12% 55%, rgba(208,196,176,0.3)  0%, transparent 50%),
+        radial-gradient(ellipse 500px 380px at 30% 22%, rgba(195,170,120,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 420px 320px at 72% 70%, rgba(180,155,100,0.15) 0%, transparent 50%),
+        linear-gradient(155deg, #C3BFB4 0%, #B4B0A4 30%, #A39E92 60%, #8C887E 100%);
+      background-attachment: fixed;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: clamp(0.6rem, 2vw, 1.4rem);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Plaster grain · warm */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='4' seed='12'/><feColorMatrix values='0 0 0 0 0.40  0 0 0 0 0.36  0 0 0 0 0.30  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>");
+      background-size: 500px 500px;
+      opacity: 0.75;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .svg-defs { position: absolute; width: 0; height: 0; pointer-events: none; }
+
+    /* ==========================================
+       COMPOSITION CONTAINER
+       Portrait 2:3 enforced via padding-bottom trick.
+       Internal sizes use em → scale with composition font-size.
+       ========================================== */
+    .composition {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      font-size: clamp(9px, 2.3vw, 14px);
+      z-index: 1;
+    }
+    .composition::before {
+      content: "";
+      display: block;
+      padding-bottom: 150%; /* 3 / 2 → enforces 2:3 portrait */
+    }
+    .composition > * {
+      position: absolute;
+    }
+
+    .layer {
+      filter: drop-shadow(0 0.8em 1.4em rgba(15,8,4,0.35));
+    }
+
+    /* ==========================================
+       PHOTOS · vintage filter
+       ========================================== */
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.18) saturate(0.88) contrast(1.06) brightness(0.93);
+    }
+    .photo--couple { object-position: center 30%; }
+    .photo--arch   { object-position: center center; }
+    .photo--church { object-position: center 55%; }
+
+    /* ==========================================
+       PAPER / DECKLED EDGES
+       ========================================== */
+    .paper {
+      position: relative;
+      background: radial-gradient(ellipse at 30% 25%, #F6ECD6 0%, #E8DCBF 60%, #D4C19A 100%);
+      color: var(--ink-deep);
+      box-shadow:
+        inset 0 0 0 0.05em rgba(120,90,40,0.15),
+        inset 0 0 1.6em rgba(120,80,30,0.12);
+    }
+    .paper--wine {
+      background: radial-gradient(ellipse at 30% 25%, #5A2530 0%, #3E1620 55%, #25080E 100%);
+      color: var(--paper-cream);
+      box-shadow:
+        inset 0 0 0 0.05em rgba(0,0,0,0.3),
+        inset 0 0 2em rgba(0,0,0,0.45);
+    }
+    .paper::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.10  0 0 0 0 0.06  0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      background-size: 300px 300px;
+      mix-blend-mode: multiply;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .paper--wine::before {
+      background-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='8'/><feColorMatrix values='0 0 0 0 0.05  0 0 0 0 0.02  0 0 0 0 0.03  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.6;
+    }
+    .paper--deckled {
+      mask-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><filter id='d'><feTurbulence type='fractalNoise' baseFrequency='0.025 0.04' numOctaves='3' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4'/></filter><rect x='0' y='0' width='100' height='100' fill='black' filter='url(%23d)'/></svg>");
+      -webkit-mask-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><filter id='d'><feTurbulence type='fractalNoise' baseFrequency='0.025 0.04' numOctaves='3' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4'/></filter><rect x='0' y='0' width='100' height='100' fill='black' filter='url(%23d)'/></svg>");
+      mask-size: 100% 100%;
+      -webkit-mask-size: 100% 100%;
+    }
+
+    /* ==========================================
+       LAYER · ARCH (top photo)
+       ========================================== */
+    .arch {
+      top: 0.5%;
+      left: 9%;
+      width: 78%;
+      aspect-ratio: 5/3;
+      background: linear-gradient(180deg, #FAF3E2 0%, #EFDFC2 100%);
+      padding: 0.55em;
+      transform: rotate(-1.5deg);
+      box-shadow:
+        0 1.2em 1.8em -0.4em rgba(15,8,4,0.5),
+        0 0.4em 0.8em -0.2em rgba(15,8,4,0.35);
+      z-index: 2;
+    }
+    .arch__photo {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1F1612;
+      box-shadow: inset 0 0 1em rgba(15,8,4,0.4);
+    }
+
+    /* ==========================================
+       LAYER · COUPLE polaroid
+       ========================================== */
+    .couple {
+      top: 20%;
+      left: 0%;
+      width: 36%;
+      aspect-ratio: 4/5.4;
+      background: linear-gradient(180deg, #FAF3E2 0%, #EFDFC2 100%);
+      padding: 0.7em 0.7em 2.2em;
+      transform: rotate(-8deg);
+      box-shadow:
+        0 1.4em 2em -0.4em rgba(15,8,4,0.55),
+        0 0.5em 0.9em -0.2em rgba(15,8,4,0.35);
+      z-index: 4;
+    }
+    .couple__photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: #1F1612;
+      box-shadow: inset 0 0 1em rgba(15,8,4,0.45);
+    }
+    .couple__tape {
+      position: absolute;
+      top: -0.5em;
+      left: 50%;
+      transform: translateX(-50%) rotate(2deg);
+      width: 38%;
+      height: 1.1em;
+      background:
+        linear-gradient(180deg, rgba(255,250,230,0.7), rgba(220,200,160,0.55));
+      border: 0.05em solid rgba(140,110,60,0.25);
+      box-shadow: 0 0.2em 0.4em rgba(15,8,4,0.18);
+      mix-blend-mode: multiply;
+    }
+
+    /* ==========================================
+       LAYER · WINE PAPER STRIP (under main card)
+       ========================================== */
+    .wine-strip {
+      top: 14%;
+      left: 24%;
+      width: 66%;
+      height: 56%;
+      background: radial-gradient(ellipse at 30% 25%, #5A2530 0%, #3E1620 55%, #25080E 100%);
+      transform: rotate(2.2deg);
+      box-shadow:
+        inset 0 0 2.5em rgba(0,0,0,0.55),
+        0 1em 1.6em rgba(15,8,4,0.4);
+      z-index: 1;
+    }
+    .wine-strip::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='8'/><feColorMatrix values='0 0 0 0 0.05  0 0 0 0 0.02  0 0 0 0 0.03  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      background-size: 300px 300px;
+      mix-blend-mode: multiply;
+      opacity: 0.65;
+    }
+
+    /* ==========================================
+       LAYER · MAIN INVITATION CARD
+       ========================================== */
+    .card-main {
+      top: 8%;
+      left: 30%;
+      width: 65%;
+      height: 56%;
+      padding: 1.5em 1.4em 1.3em;
+      text-align: center;
+      transform: rotate(0.5deg);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .flourish-top, .flourish-bottom {
+      width: 60%;
+      height: 1.2em;
+      margin: 0.4em auto;
+    }
+
+    .names {
+      font-family: var(--font-script);
+      font-weight: 400;
+      font-size: 3em;
+      line-height: 0.85;
+      color: var(--ink-deep);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .names__line:first-child { transform: translateX(-0.15em); }
+    .names__line:last-child  { transform: translateX(0.18em); }
+    .names__amp {
+      font-size: 0.5em;
+      margin: -0.15em 0;
+      color: var(--ink-mid);
+      font-style: italic;
+    }
+
+    .intro {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.85em;
+      line-height: 1.35;
+      color: var(--ink-mid);
+      margin: 0.4em 0;
+      max-width: 18em;
+    }
+
+    .date {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 1.55em;
+      color: var(--ink-deep);
+      margin: 0.2em 0 0.4em;
+      letter-spacing: 0.01em;
+    }
+
+    .ceremony {
+      font-family: var(--font-serif);
+      font-size: 0.78em;
+      line-height: 1.4;
+      color: var(--ink-mid);
+      margin: 0.2em 0;
+    }
+    .ceremony em { font-style: italic; }
+    .ceremony strong { font-weight: 500; }
+
+    .address {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.72em;
+      color: var(--ink-soft);
+      margin: 0.15em 0 0.4em;
+    }
+
+    .hacienda-mini {
+      width: 62%;
+      aspect-ratio: 16 / 9;
+      margin: 0.3em auto 0.2em;
+      overflow: hidden;
+      box-shadow: 0 0.15em 0.4em rgba(15,8,4,0.25);
+    }
+    .hacienda-mini .photo { filter: sepia(0.22) saturate(0.85) contrast(1.05) brightness(0.95); }
+
+    .ceremony-civil {
+      font-family: var(--font-serif);
+      font-size: 0.78em;
+      line-height: 1.4;
+      color: var(--ink-mid);
+      margin: 0.15em 0;
+    }
+    .ceremony-civil em { font-style: italic; }
+    .ceremony-civil .place {
+      font-family: var(--font-caps);
+      font-size: 0.92em;
+      letter-spacing: 0.16em;
+      color: var(--ink-deep);
+    }
+
+    /* ==========================================
+       LAYER · WAX SEAL · top of arch overlap
+       ========================================== */
+    .seal-top {
+      top: 18%;
+      left: 15%;
+      width: 11%;
+      aspect-ratio: 1;
+      z-index: 7;
+      filter:
+        drop-shadow(0 0.4em 0.5em rgba(10,4,2,0.55))
+        drop-shadow(0 0.15em 0.2em rgba(10,4,2,0.45));
+      transform: rotate(-8deg);
+    }
+
+    /* ==========================================
+       LAYER · RSVP small card (bottom-left)
+       ========================================== */
+    .card-rsvp {
+      top: 56%;
+      left: 0%;
+      width: 32%;
+      height: 17%;
+      padding: 1.5em 0.7em 0.7em;
+      text-align: center;
+      transform: rotate(-2.5deg);
+      z-index: 5;
+    }
+    .card-rsvp__title {
+      font-family: var(--font-caps);
+      font-size: 0.85em;
+      letter-spacing: 0.18em;
+      color: var(--ink-deep);
+      margin: 0;
+      font-weight: 500;
+    }
+    .card-rsvp__body {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.6em;
+      line-height: 1.4;
+      color: var(--ink-mid);
+      margin: 0.4em 0;
+    }
+    .card-rsvp__small {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.55em;
+      color: var(--ink-soft);
+      margin: 0.3em 0 0.15em;
+    }
+    .card-rsvp__note {
+      font-family: var(--font-serif);
+      font-size: 0.65em;
+      color: var(--ink-deep);
+      margin: 0.15em 0 0;
+      font-weight: 500;
+    }
+
+    .seal-rsvp {
+      top: 54%;
+      left: 16%;
+      width: 9%;
+      aspect-ratio: 1;
+      z-index: 7;
+      filter:
+        drop-shadow(0 0.4em 0.5em rgba(10,4,2,0.55))
+        drop-shadow(0 0.15em 0.2em rgba(10,4,2,0.45));
+      transform: rotate(-12deg);
+    }
+
+    /* ==========================================
+       LAYER · RECEPCION wine card
+       ========================================== */
+    .card-recepcion {
+      top: 62%;
+      left: 28%;
+      width: 66%;
+      height: 30%;
+      padding: 1em 1.2em;
+      text-align: center;
+      transform: rotate(0.5deg);
+      z-index: 5;
+    }
+    .card-recepcion__title {
+      font-family: var(--font-script);
+      font-size: 2.4em;
+      color: var(--gold-bright);
+      margin: 0 0 0.05em;
+      line-height: 0.9;
+      text-shadow: 0 0.05em 0.1em rgba(0,0,0,0.4);
+    }
+    .card-recepcion__body {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.75em;
+      color: var(--paper-cream);
+      line-height: 1.4;
+      margin: 0.4em 0;
+    }
+    .card-recepcion__time {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-style: italic;
+      color: var(--gold-bright);
+    }
+    .card-recepcion__address {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.66em;
+      color: var(--paper-cream);
+      opacity: 0.85;
+      margin: 0.5em 0 0;
+      line-height: 1.35;
+    }
+
+    /* ==========================================
+       LAYER · GREEN FAN-TAG
+       ========================================== */
+    .fan-tag {
+      top: 55%;
+      right: 0%;
+      width: 24%;
+      height: 30%;
+      z-index: 6;
+      filter: drop-shadow(0 1em 1.4em rgba(15,8,4,0.45));
+    }
+    .fan-tag__svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .fan-tag__content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18% 10% 14%;
+      text-align: center;
+      color: var(--paper-cream);
+    }
+    .fan-tag__eyebrow {
+      font-family: var(--font-caps);
+      font-size: 0.55em;
+      letter-spacing: 0.18em;
+      color: var(--gold-bright);
+      margin: 0;
+      line-height: 1;
+    }
+    .fan-tag__title {
+      font-family: var(--font-caps);
+      font-size: 0.78em;
+      letter-spacing: 0.22em;
+      color: var(--paper-cream);
+      margin: 0.2em 0 0.5em;
+      line-height: 1;
+      font-weight: 500;
+    }
+    .fan-tag__note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.55em;
+      color: var(--paper-cream);
+      opacity: 0.9;
+      margin: 0.3em 0;
+      line-height: 1.3;
+    }
+    .fan-tag__num-label {
+      font-family: var(--font-caps);
+      font-size: 0.45em;
+      letter-spacing: 0.15em;
+      color: var(--gold-bright);
+      margin: 0.4em 0 0;
+    }
+    .fan-tag__num {
+      font-family: var(--font-serif);
+      font-size: 0.78em;
+      letter-spacing: 0.05em;
+      color: var(--paper-cream);
+      margin: 0.05em 0 0;
+      font-weight: 500;
+    }
+    .fan-tag__tassel {
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8%;
+      height: 12%;
+    }
+
+    /* ==========================================
+       LAYER · ENVELOPE + STAMPS (bottom-left)
+       ========================================== */
+    .envelope {
+      top: 88%;
+      left: 1%;
+      width: 28%;
+      height: 11%;
+      z-index: 6;
+      transform: rotate(-6deg);
+      filter: drop-shadow(0 0.6em 0.9em rgba(15,8,4,0.45));
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+    }
+    .stamp {
+      width: 48%;
+      aspect-ratio: 3/4;
+      padding: 0.25em;
+      position: relative;
+      box-shadow: 0 0.3em 0.6em rgba(15,8,4,0.4);
+    }
+    .stamp--cream {
+      background: radial-gradient(ellipse at 30% 30%, #F2E6CC 0%, #D6C29A 70%, #B89E70 100%);
+      transform: rotate(-5deg);
+    }
+    .stamp--wine {
+      background: radial-gradient(ellipse at 30% 30%, #5E2530 0%, #2C0E15 80%);
+      color: var(--paper-cream);
+      transform: rotate(7deg) translateY(0.3em);
+    }
+    .stamp__inner {
+      width: 100%; height: 100%;
+      border: 0.05em dashed rgba(60,30,10,0.5);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .stamp--wine .stamp__inner { border-color: rgba(240,220,180,0.5); }
+
+    .stamp__tr {
+      font-family: var(--font-script);
+      font-size: 1.7em;
+      color: var(--gold-bright);
+      line-height: 0.85;
+      text-shadow: 0 0.05em 0.08em rgba(0,0,0,0.4);
+    }
+    .stamp__city {
+      font-family: var(--font-caps);
+      font-size: 0.42em;
+      letter-spacing: 0.15em;
+      color: var(--ink-soft);
+      margin-top: 0.3em;
+    }
+    .stamp--wine .stamp__city { color: rgba(240,220,180,0.7); }
+    .stamp__num {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.2em;
+      color: var(--ink-deep);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       SVG · symbols & filters
+       ============================================ -->
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- Flourish -->
+      <symbol id="flourish" viewBox="0 0 240 28">
+        <g fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10,14 C40,14 60,4 90,14 C100,18 105,18 115,14" />
+          <path d="M120,14 C130,10 135,10 145,14 C175,24 195,14 230,14" />
+          <circle cx="118" cy="14" r="1.8" fill="currentColor" />
+          <path d="M115,14 C117,12 119,12 121,14" />
+          <path d="M119,14 C121,16 119,16 117,14" />
+          <path d="M70,11 C72,8 75,8 77,11" />
+          <path d="M163,17 C165,20 168,20 170,17" />
+          <path d="M48,16 C50,18 52,18 54,16" />
+          <path d="M186,12 C188,10 190,10 192,12" />
+        </g>
+      </symbol>
+
+      <!-- Wax body gradient -->
+      <radialGradient id="waxBody" cx="32%" cy="24%" r="82%">
+        <stop offset="0%" stop-color="#D9A968" />
+        <stop offset="22%" stop-color="#B68240" />
+        <stop offset="55%" stop-color="#7A5318" />
+        <stop offset="80%" stop-color="#4A2E0F" />
+        <stop offset="100%" stop-color="#1F1107" />
+      </radialGradient>
+      <radialGradient id="waxVignette" cx="50%" cy="50%" r="52%">
+        <stop offset="65%" stop-color="rgba(255,255,255,0)" />
+        <stop offset="95%" stop-color="rgba(20,10,2,0.4)" />
+        <stop offset="100%" stop-color="rgba(10,5,2,0.7)" />
+      </radialGradient>
+      <radialGradient id="waxSpec" cx="30%" cy="22%" r="22%">
+        <stop offset="0%" stop-color="rgba(255,235,180,0.85)" />
+        <stop offset="45%" stop-color="rgba(255,220,160,0.32)" />
+        <stop offset="100%" stop-color="rgba(255,220,160,0)" />
+      </radialGradient>
+
+      <!-- Wax Seal · TR -->
+      <symbol id="waxSeal" viewBox="0 0 64 64">
+        <path d="M 32,3 C 41,2 50,5.5 55.5,12.5 C 60.5,18 62.5,25.5 60.5,33 C 63,40 60,48 53.5,53 C 48.5,57 41,59.5 33,59.5 C 25,60.5 17,58 11.5,52.5 C 6,47.5 3,40 4.5,32.5 C 2.5,25 6,16 12,11 C 17.5,6 25,3 32,3 Z"
+              fill="url(#waxBody)" />
+        <ellipse cx="22" cy="16" rx="9" ry="5.5" fill="url(#waxSpec)" />
+        <ellipse cx="20" cy="14" rx="3" ry="1.5" fill="rgba(255,245,210,0.85)" />
+        <path d="M 32,3 C 41,2 50,5.5 55.5,12.5 C 60.5,18 62.5,25.5 60.5,33 C 63,40 60,48 53.5,53 C 48.5,57 41,59.5 33,59.5 C 25,60.5 17,58 11.5,52.5 C 6,47.5 3,40 4.5,32.5 C 2.5,25 6,16 12,11 C 17.5,6 25,3 32,3 Z"
+              fill="url(#waxVignette)" />
+        <g opacity="0.4" stroke="#1A0E04" stroke-width="0.25" fill="none" stroke-linecap="round">
+          <path d="M 14,22 Q 18,20 22,23" />
+          <path d="M 43,12 Q 47,11 50,15" />
+          <path d="M 50,42 Q 53,40 56,44" />
+          <path d="M 10,42 Q 13,44 12,48" />
+        </g>
+        <g fill="rgba(20,10,2,0.4)">
+          <circle cx="20" cy="46" r="0.5" />
+          <circle cx="48" cy="22" r="0.42" />
+          <circle cx="42" cy="50" r="0.34" />
+          <circle cx="15" cy="30" r="0.28" />
+        </g>
+        <!-- TR Monogram -->
+        <g text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-style="italic" font-weight="700" font-size="26">
+          <text x="32.6" y="40.6" fill="rgba(245,210,150,0.65)">TR</text>
+          <text x="32" y="40" fill="#160B02">TR</text>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================================
+       COMPOSITION
+       ============================================ -->
+  <main class="composition" aria-label="Invitación de boda de Tonantzin y Rafael">
+
+    <!-- Wine paper strip (behind main card) -->
+    <div class="layer wine-strip" aria-hidden="true"></div>
+
+    <!-- ARCH PHOTO -->
+    <figure class="layer arch">
+      <div class="arch__photo">
+        <img src="images/arch.jpeg" alt="Arco de piedra en Hacienda Arcadia" class="photo photo--arch" />
+      </div>
+    </figure>
+
+    <!-- COUPLE POLAROID -->
+    <figure class="layer couple">
+      <div class="couple__tape" aria-hidden="true"></div>
+      <div class="couple__photo">
+        <img src="images/couple.jpeg" alt="Tonantzin y Rafael" class="photo photo--couple" />
+      </div>
+    </figure>
+
+    <!-- MAIN INVITATION CARD -->
+    <article class="layer card-main paper paper--deckled">
+      <svg class="flourish-top" viewBox="0 0 240 28" style="color: var(--ink-mid); opacity: 0.85;">
+        <use href="#flourish" />
+      </svg>
+
+      <h1 class="names">
+        <span class="names__line">Tonantzin</span>
+        <span class="names__amp">&amp;</span>
+        <span class="names__line">Rafael</span>
+      </h1>
+
+      <p class="intro">
+        Con la bendición de Dios y nuestros padres, tenemos el honor de invitarles a nuestra unión en matrimonio el día
+      </p>
+
+      <p class="date">24 de octubre del 2026</p>
+
+      <p class="ceremony">
+        Ceremonia Religiosa a las <em>04:00</em> <em>de la tarde</em><br />
+        en el Templo Nuestra Señora de Monserrat
+      </p>
+
+      <p class="address">Pablo Casals, Las Cañadas, Zapopan, Jal.</p>
+
+      <!-- Mini photo · Templo Nuestra Señora de Monserrat -->
+      <div class="hacienda-mini">
+        <img src="images/church.jpeg" alt="Templo Nuestra Señora de Monserrat" class="photo photo--church" />
+      </div>
+
+      <p class="ceremony-civil">
+        Ceremonia Civil a las <em>05:30</em> <em>de la tarde</em><br />
+        en <span class="place">HACIENDA ARCADIA</span>
+      </p>
+
+      <svg class="flourish-bottom" viewBox="0 0 240 28" style="color: var(--ink-mid); opacity: 0.85; transform: scaleY(-1);">
+        <use href="#flourish" />
+      </svg>
+    </article>
+
+    <!-- WAX SEAL · top -->
+    <div class="layer seal-top" aria-hidden="true">
+      <svg viewBox="0 0 64 64" style="width:100%;height:100%;"><use href="#waxSeal" /></svg>
+    </div>
+
+    <!-- RSVP CARD -->
+    <article class="layer card-rsvp paper paper--deckled">
+      <p class="card-rsvp__title">RSVP</p>
+      <p class="card-rsvp__body">
+        La confirmación de asistencia será enviada en los próximos días
+      </p>
+      <p class="card-rsvp__small"><em>Gracias por ser parte de nuestra historia</em></p>
+      <p class="card-rsvp__note">No niños</p>
+    </article>
+
+    <!-- WAX SEAL · RSVP -->
+    <div class="layer seal-rsvp" aria-hidden="true">
+      <svg viewBox="0 0 64 64" style="width:100%;height:100%;"><use href="#waxSeal" /></svg>
+    </div>
+
+    <!-- RECEPCION WINE CARD -->
+    <article class="layer card-recepcion paper paper--wine paper--deckled">
+      <h2 class="card-recepcion__title">Recepción</h2>
+      <p class="card-recepcion__body">
+        Después de la ceremonia civil agradecemos su presencia en <em>Hacienda Arcadia</em><br />
+        a partir de las <span class="card-recepcion__time">06:30 de la tarde</span>
+      </p>
+      <p class="card-recepcion__address">
+        Priv. Ignacio Sandoval #24<br />
+        La Tarjea, Zapopan, Jal.
+      </p>
+    </article>
+
+    <!-- GREEN FAN-TAG -->
+    <div class="layer fan-tag">
+      <svg class="fan-tag__svg" viewBox="0 0 100 140" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="fanGreen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5A6E4F" />
+            <stop offset="100%" stop-color="#3E5037" />
+          </linearGradient>
+        </defs>
+        <path d="M 50,5 C 65,5 80,15 87,30 C 92,40 94,52 94,64 L 94,120 Q 94,128 86,128 L 14,128 Q 6,128 6,120 L 6,64 C 6,52 8,40 13,30 C 20,15 35,5 50,5 Z"
+              fill="url(#fanGreen)" stroke="#2E3D28" stroke-width="0.6" />
+        <path d="M 50,12 C 63,12 76,21 82,34 C 87,43 89,54 89,65 L 89,117 L 11,117 L 11,65 C 11,54 13,43 18,34 C 24,21 37,12 50,12 Z"
+              fill="none" stroke="#B89455" stroke-width="0.55" opacity="0.85" />
+        <circle cx="50" cy="22" r="2" fill="#B89455" />
+        <path d="M 40,24 Q 50,17 60,24" stroke="#B89455" stroke-width="0.5" fill="none" />
+      </svg>
+
+      <div class="fan-tag__content">
+        <p class="fan-tag__eyebrow">Código de</p>
+        <p class="fan-tag__title">VESTIMENTA<br />FORMAL</p>
+        <p class="fan-tag__note">Podrán encontrar nuestra mesa de regalos en <em>Liverpool</em></p>
+        <p class="fan-tag__num-label">Número de evento</p>
+        <p class="fan-tag__num">52001892</p>
+      </div>
+
+      <div class="fan-tag__tassel" aria-hidden="true">
+        <svg viewBox="0 0 20 32" style="width:100%;height:100%;">
+          <line x1="10" y1="0" x2="10" y2="8" stroke="#B89455" stroke-width="1.5" />
+          <ellipse cx="10" cy="10.5" rx="4.5" ry="2.6" fill="#9E7A3C" />
+          <g stroke="#B89455" stroke-width="0.7" stroke-linecap="round">
+            <line x1="6" y1="12.5" x2="5" y2="26" />
+            <line x1="8" y1="12.5" x2="7.5" y2="28" />
+            <line x1="10" y1="12.5" x2="10" y2="29" />
+            <line x1="12" y1="12.5" x2="12.5" y2="28" />
+            <line x1="14" y1="12.5" x2="15" y2="26" />
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ENVELOPE / STAMPS -->
+    <div class="layer envelope" aria-hidden="false">
+      <div class="stamp stamp--cream">
+        <div class="stamp__inner">
+          <span class="stamp__num">26</span>
+          <span class="stamp__city">JAL · 26</span>
+        </div>
+      </div>
+      <div class="stamp stamp--wine">
+        <div class="stamp__inner">
+          <span class="stamp__tr">TR</span>
+          <span class="stamp__city">T &amp; R</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
