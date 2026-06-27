@@ -42,6 +42,7 @@
        ============================================ */
     .invitation {
       position: relative;
+      container-type: inline-size;   /* enables cqw units for the RSVP button */
       width: 100%;
       max-width: 500px;
       box-shadow:
@@ -140,36 +141,71 @@
        Tuned visually against the reference image.
        ============================================ */
 
-    /* TEMPLO · religious ceremony + temple address (main card) → Google Maps */
+    /* TEMPLO · "Ceremonia Religiosa… Templo Nuestra Señora de Monserrat" → Google Maps */
     .zone--templo {
-      top: 46.3%;
-      left: 45%;
-      width: 47%;
-      height: 8.8%;
+      top: 41.5%;
+      left: 46%;
+      width: 43%;
+      height: 5.8%;
     }
 
-    /* HACIENDA · Recepción card street address (wine card) → Google Maps */
+    /* HACIENDA · "Hacienda Arcadia… 06:30" en la tarjeta Recepción → Google Maps */
     .zone--hacienda {
-      top: 88.5%;
-      left: 20%;
-      width: 37%;
-      height: 8%;
+      top: 84.5%;
+      left: 26%;
+      width: 29%;
+      height: 5.5%;
     }
 
     /* LIVERPOOL · dress code + event number (green fan-tag) → Mesa de regalos */
     .zone--liverpool {
-      top: 66%;
-      left: 75.5%;
-      width: 23.5%;
+      top: 62%;
+      left: 74%;
+      width: 24%;
       height: 25%;
     }
 
-    /* RSVP card → WhatsApp confirmation */
-    .zone--rsvp {
-      top: 60.2%;
-      left: 13%;
-      width: 27%;
-      height: 15%;
+    /* ============================================
+       RSVP · VISIBLE elegant button overlaid on the
+       photo, covering the "será enviada en los próximos
+       días" line of the RSVP card. Opens the bottom sheet.
+       Font uses cqw so it scales with the photo.
+       ============================================ */
+    .rsvp-btn {
+      position: absolute;
+      top: 63%;
+      left: 10.5%;
+      width: 28%;
+      height: 5.9%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 0.3em;
+      margin: 0;
+      border: 1px solid rgba(230,207,148,0.75);
+      border-radius: 0.45rem;
+      background: linear-gradient(165deg, #6a2a37 0%, #561f2b 100%);
+      color: #f3e6cf;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-size: 3.2cqw;
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      box-shadow: 0 0.15rem 0.5rem rgba(0,0,0,0.4);
+      transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+    }
+    .rsvp-btn:hover {
+      background: linear-gradient(165deg, #7a3340 0%, #642634 100%);
+      box-shadow: 0 0.28rem 0.75rem rgba(0,0,0,0.5);
+    }
+    .rsvp-btn:active { transform: scale(0.97); }
+    .rsvp-btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 0.14rem rgba(230,207,148,0.9);
     }
 
     /* Tooltip with the destination, visible on hover/focus */
@@ -406,14 +442,12 @@
       Abrir mesa de regalos en Liverpool
     </a>
 
-    <!-- 4 · RSVP → abre el bottom sheet con el mini formulario -->
+    <!-- 4 · RSVP → botón VISIBLE elegante que abre el bottom sheet -->
     <button type="button"
-       class="zone zone--rsvp"
+       class="rsvp-btn"
        id="rsvpOpen"
-       data-tip="Confirmar asistencia"
        aria-haspopup="dialog"
-       aria-controls="rsvpSheet"
-       aria-label="Confirmar asistencia">
+       aria-controls="rsvpSheet">
       Confirmar asistencia
     </button>
 
