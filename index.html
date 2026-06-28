@@ -350,6 +350,17 @@
     .sheet__submit:active { transform: scale(0.99); }
     .sheet__submit[disabled] { opacity: 0.6; cursor: default; }
 
+    /* nota "el boleto es personal" */
+    .sheet__note {
+      margin: 0 0 0.9rem;
+      text-align: center;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 0.84rem;
+      letter-spacing: 0.02em;
+      color: #8a6d52;
+    }
+
     .field__err { color: #9b2c2c; font-size: 0.75rem; margin-top: 0.3rem; display: none; }
     .field.invalid .field__err { display: block; }
     .field.invalid input,
@@ -615,23 +626,18 @@
           <p class="field__err">Escribe tu nombre, por favor.</p>
         </div>
 
-        <div class="field" id="f-asiste">
-          <label>¿Asistirás?</label>
+        <div class="field" id="f-personas">
+          <label>¿Cuántas personas asistirán?</label>
           <div class="seg">
-            <input type="radio" id="asiste-si" data-field="asistira" value="Sí" />
-            <label for="asiste-si">Sí, ahí estaré</label>
-            <input type="radio" id="asiste-no" data-field="asistira" value="No" />
-            <label for="asiste-no">No podré</label>
+            <input type="radio" id="per-1" data-field="personas" value="1" />
+            <label for="per-1">1 persona</label>
+            <input type="radio" id="per-2" data-field="personas" value="2" />
+            <label for="per-2">2 personas</label>
           </div>
-          <p class="field__err">Indícanos si podrás asistir.</p>
-        </div>
-
-        <div class="field" id="f-invitados">
-          <label for="rsvp-invitados">Nº de personas que asisten</label>
-          <input type="number" id="rsvp-invitados" data-field="invitados"
-                 min="1" max="12" step="1" inputmode="numeric" value="1" />
           <p class="field__err">Indica cuántas personas asistirán.</p>
         </div>
+
+        <p class="sheet__note">Tu boleto es personal · admite máximo 2 personas.</p>
 
         <button type="submit" class="sheet__submit" id="rsvpSubmit">Enviar confirmación</button>
       </form>
@@ -667,10 +673,9 @@
     /* ============================================================
        CONFIG · Google Forms  ── PEGA AQUÍ TUS DATOS
        Cómo obtenerlos:
-       1) Crea un Google Form con 3 preguntas, en este orden:
-            · "Nombre"            → Respuesta corta
-            · "¿Asistirá?"        → Opción múltiple, opciones EXACTAS: Sí / No
-            · "Número de invitados" → Respuesta corta
+       1) Crea un Google Form con 2 preguntas, en este orden:
+            · "Nombre"              → Respuesta corta
+            · "¿Cuántas personas?"  → Opción múltiple, opciones EXACTAS: 1 / 2
        2) En el Form: ⋮ (arriba dcha) → "Obtener vínculo prerrellenado",
           escribe valores de ejemplo y pulsa "Obtener vínculo". El enlace
           generado contiene entry.XXXXXXX=... para cada pregunta: esos son
@@ -680,9 +685,8 @@
     const RSVP = {
       action: "https://docs.google.com/forms/d/e/REEMPLAZA_FORM_ID/formResponse",
       entry: {
-        nombre:    "entry.1111111111",
-        asistira:  "entry.2222222222",
-        invitados: "entry.3333333333"
+        nombre:   "entry.1111111111",
+        personas: "entry.2222222222"
       }
     };
     /* ============================================================ */
@@ -695,12 +699,10 @@
     const gframe  = document.getElementById('rsvp_gframe');
     const submit  = document.getElementById('rsvpSubmit');
     const fNombre = document.getElementById('f-nombre');
-    const fAsiste = document.getElementById('f-asiste');
-    const fInvit  = document.getElementById('f-invitados');
+    const fPers   = document.getElementById('f-personas');
     const nameInp = document.getElementById('rsvp-nombre');
-    const invInp  = document.getElementById('rsvp-invitados');
     const doneMsg = document.getElementById('rsvpDoneMsg');
-    const radios  = Array.prototype.slice.call(form.querySelectorAll('input[data-field="asistira"]'));
+    const persRadios = Array.prototype.slice.call(form.querySelectorAll('input[data-field="personas"]'));
 
     // Wire the Google Form action + field names from CONFIG (single edit point)
     form.action = RSVP.action;
@@ -718,18 +720,9 @@
     document.getElementById('rsvpDoneClose').addEventListener('click', closeSheet);
     sheet.addEventListener('click', function (e) { if (e.target === sheet) closeSheet(); });
 
-    // Sí / No → mostrar u ocultar el nº de invitados
-    radios.forEach(function (r) {
-      r.addEventListener('change', function () {
-        if (r.value === 'No' && r.checked) {
-          fInvit.style.display = 'none';
-          invInp.value = '0';
-        } else {
-          fInvit.style.display = '';
-          if (Number(invInp.value) < 1) invInp.value = '1';
-        }
-        fAsiste.classList.remove('invalid');
-      });
+    // limpiar el error de "personas" al elegir una opción
+    persRadios.forEach(function (r) {
+      r.addEventListener('change', function () { fPers.classList.remove('invalid'); });
     });
     nameInp.addEventListener('input', function () { fNombre.classList.remove('invalid'); });
 
@@ -738,15 +731,10 @@
       if (!nameInp.value.trim()) { fNombre.classList.add('invalid'); ok = false; }
       else fNombre.classList.remove('invalid');
 
-      const chosen = radios.filter(function (r) { return r.checked; })[0];
-      if (!chosen) { fAsiste.classList.add('invalid'); ok = false; }
-      else fAsiste.classList.remove('invalid');
+      const chosen = persRadios.filter(function (r) { return r.checked; })[0];
+      if (!chosen) { fPers.classList.add('invalid'); ok = false; }
+      else fPers.classList.remove('invalid');
 
-      if (chosen && chosen.value === 'Sí') {
-        const n = Number(invInp.value);
-        if (!isFinite(n) || n < 1) { fInvit.classList.add('invalid'); ok = false; }
-        else fInvit.classList.remove('invalid');
-      }
       return ok;
     }
 
@@ -768,10 +756,7 @@
     gframe.addEventListener('load', function () {
       if (!pending) return;
       pending = false;
-      const chosen = radios.filter(function (r) { return r.checked; })[0];
-      doneMsg.textContent = (chosen && chosen.value === 'No')
-        ? 'Lamentamos que no puedas acompañarnos. ¡Gracias por avisarnos!'
-        : '¡Te esperamos el 24 de octubre! Tu confirmación quedó registrada.';
+      doneMsg.textContent = '¡Te esperamos el 24 de octubre! Tu confirmación quedó registrada.';
       sheet.classList.add('is-done');
     });
   })();
