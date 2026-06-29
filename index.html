@@ -209,6 +209,44 @@
     }
     .foto-badge svg { display: block; width: 58%; height: 58%; }
 
+    /* "Ver ubicación" · botón papelería que TAPA el texto erróneo
+       "Guadalajara, Jalisco" (bajo Hacienda Arcadia) → Google Maps */
+    .loc-btn {
+      position: absolute;
+      top: 61.3%;
+      left: 57%;
+      width: 21%;
+      height: 3.4%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+      padding: 0 0.3em;
+      border: 1px solid #b8964f;                /* fine gold border */
+      border-radius: 0.3rem;
+      background: linear-gradient(180deg, #f7f0df 0%, #efe6d0 100%);  /* parchment */
+      color: #5a2330;                            /* wine text */
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      font-style: italic;
+      font-size: 0.58rem;                        /* fallback if cqw unsupported */
+      font-size: clamp(0.42rem, 2.7cqw, 0.85rem);
+      line-height: 1;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow:
+        0 0.12rem 0.4rem rgba(40,20,10,0.3),
+        inset 0 0 0 1px rgba(255,255,255,0.45);
+      transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+    }
+    .loc-btn:hover {
+      background: linear-gradient(180deg, #fbf5e7 0%, #f3ead7 100%);
+      box-shadow: 0 0.2rem 0.55rem rgba(40,20,10,0.4), inset 0 0 0 1px rgba(255,255,255,0.5);
+    }
+    .loc-btn:active { transform: scale(0.97); }
+    .loc-btn:focus-visible { outline: none; box-shadow: 0 0 0 0.14rem rgba(184,150,79,0.9); }
+
     /* Tooltip with the destination, visible on hover/focus */
     .zone::after {
       content: attr(data-tip);
@@ -594,6 +632,15 @@
         <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
       </svg>
     </span>
+
+    <!-- 6 · "Ver ubicación" → tapa el texto erróneo "Guadalajara, Jalisco" → Google Maps -->
+    <a class="loc-btn"
+       href="https://www.google.com/maps/search/?api=1&query=Hacienda+Arcadia+La+Tarjea+Zapopan+Jalisco"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Ver ubicación de Hacienda Arcadia en el mapa">
+      Ver ubicación
+    </a>
 
   </main>
 
