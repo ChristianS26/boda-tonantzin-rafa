@@ -213,39 +213,37 @@
        "Guadalajara, Jalisco" (bajo Hacienda Arcadia) → Google Maps */
     .loc-btn {
       position: absolute;
-      top: 61.3%;
-      left: 57%;
-      width: 21%;
-      height: 3.4%;
+      top: 61.5%;
+      left: 57.5%;
+      width: 20%;
+      height: 3%;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       text-decoration: none;
       padding: 0 0.3em;
-      border: 1px solid #b8964f;                /* fine gold border */
-      border-radius: 0.3rem;
-      background: linear-gradient(180deg, #f7f0df 0%, #efe6d0 100%);  /* parchment */
-      color: #5a2330;                            /* wine text */
+      border: 1px solid rgba(95, 82, 62, 0.5);   /* línea café apagada, no dorado vivo */
+      border-radius: 0.25rem;
+      background: #d0cbc6;                        /* igual al papel gris envejecido */
+      color: #4a4036;                            /* tinta café oscura, apagada */
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-weight: 600;
       font-style: italic;
-      font-size: 0.58rem;                        /* fallback if cqw unsupported */
-      font-size: clamp(0.42rem, 2.7cqw, 0.85rem);
+      font-size: 0.52rem;                        /* fallback si no hay cqw */
+      font-size: clamp(0.4rem, 2.5cqw, 0.8rem);
       line-height: 1;
       letter-spacing: 0.01em;
       cursor: pointer;
-      box-shadow:
-        0 0.12rem 0.4rem rgba(40,20,10,0.3),
-        inset 0 0 0 1px rgba(255,255,255,0.45);
+      box-shadow: 0 0.05rem 0.18rem rgba(40, 30, 20, 0.18);  /* sombra muy suave, sin brillo */
       transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
     }
     .loc-btn:hover {
-      background: linear-gradient(180deg, #fbf5e7 0%, #f3ead7 100%);
-      box-shadow: 0 0.2rem 0.55rem rgba(40,20,10,0.4), inset 0 0 0 1px rgba(255,255,255,0.5);
+      background: #d9d4cf;
+      box-shadow: 0 0.1rem 0.28rem rgba(40, 30, 20, 0.28);
     }
     .loc-btn:active { transform: scale(0.97); }
-    .loc-btn:focus-visible { outline: none; box-shadow: 0 0 0 0.14rem rgba(184,150,79,0.9); }
+    .loc-btn:focus-visible { outline: none; box-shadow: 0 0 0 0.12rem rgba(95, 82, 62, 0.75); }
 
     /* Tooltip with the destination, visible on hover/focus */
     .zone::after {
