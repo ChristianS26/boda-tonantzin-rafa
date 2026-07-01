@@ -245,6 +245,15 @@
     .loc-btn:active { transform: scale(0.97); }
     .loc-btn:focus-visible { outline: none; box-shadow: 0 0 0 0.12rem rgba(95, 82, 62, 0.75); }
 
+    /* Mismo diseño, colocado debajo del texto "Templo Nuestra Señora
+       de Monserrat" → Google Maps */
+    .loc-btn--templo {
+      top: 46.9%;
+      left: 58.75%;
+      width: 17.5%;
+      height: 2.3%;
+    }
+
     /* Tooltip with the destination, visible on hover/focus */
     .zone::after {
       content: attr(data-tip);
@@ -581,6 +590,15 @@
        data-tip="Cómo llegar al Templo"
        aria-label="Cómo llegar al Templo Nuestra Señora de Monserrat">
       Ver dirección del Templo
+    </a>
+
+    <!-- 1b · Botón visible "Ver ubicación" debajo del texto del Templo → Google Maps -->
+    <a class="loc-btn loc-btn--templo"
+       href="https://www.google.com/maps/search/?api=1&query=Templo+Nuestra+Senora+de+Monserrat+Las+Canadas+Zapopan+Jalisco"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Ver ubicación del Templo Nuestra Señora de Monserrat en el mapa">
+      Ver ubicación
     </a>
 
     <!-- 2 · Hacienda Arcadia → Google Maps -->
