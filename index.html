@@ -354,6 +354,9 @@
     }
     .sheet__sub { font-size: 0.82rem; color: #6b5947; margin: 0.25rem 0 0; font-style: italic; }
 
+    /* el bloque que no corresponde a la variante (1 ó 2 personas) se oculta */
+    [hidden] { display: none !important; }
+
     .field { margin-bottom: 0.95rem; }
     .field > label {
       display: block; font-size: 0.74rem; letter-spacing: 0.06em;
@@ -683,31 +686,48 @@
 
         <div class="field" id="f-nombre">
           <label for="rsvp-nombre">Nombre completo</label>
-          <input type="text" id="rsvp-nombre" data-field="nombre"
+          <input type="text" id="rsvp-nombre"
                  autocomplete="name" maxlength="80"
                  placeholder="Nombre completo" />
           <p class="field__err">Escribe tu nombre, por favor.</p>
         </div>
 
-        <div class="field" id="f-personas">
+        <!-- VARIANTE 1 PERSONA (?p=1 · default) · sí / no asistiré -->
+        <div class="field" id="f-asiste" hidden>
+          <label>¿Nos acompañarás?</label>
+          <div class="seg">
+            <input type="radio" name="ui-asiste" id="as-si" value="si" />
+            <label for="as-si">Sí, asistiré</label>
+            <input type="radio" name="ui-asiste" id="as-no" value="no" />
+            <label for="as-no">No podré ir</label>
+          </div>
+          <p class="field__err">Indícanos si podrás acompañarnos.</p>
+        </div>
+
+        <!-- VARIANTE 2 PERSONAS (?p=2) · cuántos lugares se ocupan -->
+        <div class="field" id="f-personas" hidden>
           <label>¿Cuántas personas asistirán?</label>
           <div class="seg">
-            <input type="radio" id="per-1" data-field="personas" value="1 Persona" />
+            <input type="radio" name="ui-personas" id="per-1" value="1 Persona" />
             <label for="per-1">1 persona</label>
-            <input type="radio" id="per-2" data-field="personas" value="2 Personas" />
+            <input type="radio" name="ui-personas" id="per-2" value="2 Personas" />
             <label for="per-2">2 personas</label>
           </div>
           <p class="field__err">Indica cuántas personas asistirán.</p>
         </div>
 
-        <p class="sheet__note">Tu boleto es personal · admite máximo 2 personas.</p>
+        <p class="sheet__note" id="rsvpNote">Tu boleto es personal · admite 1 persona.</p>
+
+        <!-- valores reales que viajan a Google Forms (los llena el JS al enviar) -->
+        <input type="hidden" data-field="nombre"   id="nombreOut" />
+        <input type="hidden" data-field="personas" id="personasOut" />
 
         <button type="submit" class="sheet__submit" id="rsvpSubmit">Enviar confirmación</button>
       </form>
 
       <div class="sheet__done" aria-live="polite">
         <div class="sheet__check" aria-hidden="true">✓</div>
-        <h3>¡Gracias!</h3>
+        <h3 id="rsvpDoneTitle">¡Gracias!</h3>
         <p id="rsvpDoneMsg">Tu confirmación quedó registrada.</p>
         <button type="button" class="sheet__submit" id="rsvpDoneClose" style="margin-top:1.1rem;">Cerrar</button>
       </div>
@@ -750,9 +770,22 @@
       entry: {
         nombre:   "entry.1381815778",
         personas: "entry.996814570"
-      }
+      },
+      /* Si en el Google Form agregas una tercera opción a "¿Cuántas personas?"
+         (por ejemplo "No asistiré"), escribe aquí ese texto EXACTO y las
+         respuestas negativas se guardarán en su propia columna. Si lo dejas
+         vacío, el "no" se marca como prefijo en el nombre para no romper el
+         Form (que solo acepta "1 Persona" / "2 Personas"). */
+      noAsisteValue: ""
     };
-    /* ============================================================ */
+    /* ============================================================
+       VARIANTE DE INVITACIÓN · se elige con ?p= en la URL
+         · tusitio.com/        → 1 persona (default)
+         · tusitio.com/?p=1    → 1 persona   (sheet: nombre + sí/no)
+         · tusitio.com/?p=2    → 2 personas  (sheet: nombre + 1 ó 2 personas)
+       ============================================================ */
+    const paramP = new URLSearchParams(window.location.search).get('p');
+    const PASES  = String(paramP || '').trim() === '2' ? 2 : 1;
 
     const sheet   = document.getElementById('rsvpSheet');
     const openBtn = document.getElementById('rsvpOpen');
@@ -763,9 +796,15 @@
     const submit  = document.getElementById('rsvpSubmit');
     const fNombre = document.getElementById('f-nombre');
     const fPers   = document.getElementById('f-personas');
+    const fAsiste = document.getElementById('f-asiste');
     const nameInp = document.getElementById('rsvp-nombre');
-    const doneMsg = document.getElementById('rsvpDoneMsg');
-    const persRadios = Array.prototype.slice.call(form.querySelectorAll('input[data-field="personas"]'));
+    const note    = document.getElementById('rsvpNote');
+    const nombreOut   = document.getElementById('nombreOut');
+    const personasOut = document.getElementById('personasOut');
+    const doneMsg   = document.getElementById('rsvpDoneMsg');
+    const doneTitle = document.getElementById('rsvpDoneTitle');
+    const persRadios   = Array.prototype.slice.call(form.querySelectorAll('input[name="ui-personas"]'));
+    const asisteRadios = Array.prototype.slice.call(form.querySelectorAll('input[name="ui-asiste"]'));
 
     // Wire the Google Form action + field names from CONFIG (single edit point)
     form.action = RSVP.action;
@@ -775,6 +814,19 @@
     const configured = RSVP.action.indexOf('REEMPLAZA') === -1;
     const canDialog = typeof sheet.showModal === 'function';
 
+    /* --- arma el bottom sheet según la variante ------------------ */
+    const isPareja = PASES === 2;
+    fPers.hidden   = !isPareja;
+    fAsiste.hidden = isPareja;
+    note.textContent = isPareja
+      ? 'Tu boleto admite máximo 2 personas.'
+      : 'Tu boleto es personal · admite 1 persona.';
+
+    // el grupo de radios que aplica en esta variante
+    const activeGroup  = isPareja ? fPers : fAsiste;
+    const activeRadios = isPareja ? persRadios : asisteRadios;
+    function checked() { return activeRadios.filter(function (r) { return r.checked; })[0]; }
+
     function openSheet()  { canDialog ? sheet.showModal() : sheet.setAttribute('open', ''); }
     function closeSheet() { canDialog ? sheet.close() : sheet.removeAttribute('open'); }
 
@@ -783,9 +835,9 @@
     document.getElementById('rsvpDoneClose').addEventListener('click', closeSheet);
     sheet.addEventListener('click', function (e) { if (e.target === sheet) closeSheet(); });
 
-    // limpiar el error de "personas" al elegir una opción
-    persRadios.forEach(function (r) {
-      r.addEventListener('change', function () { fPers.classList.remove('invalid'); });
+    // limpiar el error al elegir una opción
+    activeRadios.forEach(function (r) {
+      r.addEventListener('change', function () { activeGroup.classList.remove('invalid'); });
     });
     nameInp.addEventListener('input', function () { fNombre.classList.remove('invalid'); });
 
@@ -794,14 +846,14 @@
       if (!nameInp.value.trim()) { fNombre.classList.add('invalid'); ok = false; }
       else fNombre.classList.remove('invalid');
 
-      const chosen = persRadios.filter(function (r) { return r.checked; })[0];
-      if (!chosen) { fPers.classList.add('invalid'); ok = false; }
-      else fPers.classList.remove('invalid');
+      if (!checked()) { activeGroup.classList.add('invalid'); ok = false; }
+      else activeGroup.classList.remove('invalid');
 
       return ok;
     }
 
     let pending = false;
+    let asistira = true;
     form.addEventListener('submit', function (e) {
       if (!validate()) { e.preventDefault(); return; }
       if (!configured) {
@@ -809,6 +861,28 @@
         alert('Falta conectar el Google Form: edita el bloque CONFIG (sección Google Forms) en el HTML.');
         return;
       }
+
+      // volcar la respuesta de la UI a los campos que entiende el Google Form
+      const nombre = nameInp.value.trim();
+      if (isPareja) {
+        asistira = true;
+        nombreOut.value   = nombre;
+        personasOut.value = checked().value;          // "1 Persona" | "2 Personas"
+      } else {
+        asistira = checked().value === 'si';
+        if (asistira) {
+          nombreOut.value   = nombre;
+          personasOut.value = '1 Persona';
+        } else if (RSVP.noAsisteValue) {
+          nombreOut.value   = nombre;
+          personasOut.value = RSVP.noAsisteValue;
+        } else {
+          // el Form solo acepta "1 Persona"/"2 Personas": marcamos el no en el nombre
+          nombreOut.value   = 'NO ASISTE · ' + nombre;
+          personasOut.value = '1 Persona';
+        }
+      }
+
       // dejar que el POST nativo viaje al iframe oculto
       pending = true;
       submit.disabled = true;
@@ -819,7 +893,10 @@
     gframe.addEventListener('load', function () {
       if (!pending) return;
       pending = false;
-      doneMsg.textContent = '¡Te esperamos el 24 de octubre! Tu confirmación quedó registrada.';
+      doneTitle.textContent = asistira ? '¡Gracias!' : '¡Gracias por avisar!';
+      doneMsg.textContent = asistira
+        ? '¡Te esperamos el 24 de octubre! Tu confirmación quedó registrada.'
+        : 'Qué pena que no puedas acompañarnos. Gracias por avisarnos.';
       sheet.classList.add('is-done');
     });
   })();
