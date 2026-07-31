@@ -1,4 +1,4 @@
-# Publicar la invitación · Cloudflare Pages + dominio propio
+# Publicar la invitación · GitHub Pages + dominio propio
 
 La página es **estática** (HTML/CSS/JS + imágenes, sin servidor). La portada es
 `index.html` (la invitación con foto). El RSVP envía a Google Forms desde el
@@ -10,50 +10,60 @@ navegador, así que funciona en cualquier hosting estático.
 
 ---
 
-## 1) Subir a Cloudflare Pages
+## 1) Hosting: GitHub Pages
 
-### Opción A — Subida directa (la más rápida, sin git)
-1. Crea una cuenta gratis en <https://dash.cloudflare.com>.
-2. Menú lateral: **Workers & Pages** → **Create application** → pestaña **Pages**
-   → **Upload assets**.
-3. Nombre del proyecto, p. ej. `boda-tonantzin-rafa`.
-4. Arrastra los archivos del sitio. **Importante:**
-   - `index.html` debe quedar en la **raíz** de lo que subes (no dentro de una subcarpeta).
-   - Incluye: `index.html`, `invitacion.html`, `invitacion-completa.html`,
-     `styles.css`, `script.js` y la carpeta `images/`.
-   - **NO subas** la carpeta `.claude/` ni `DEPLOY.md` (no hacen daño, pero no sirven al público).
-   - Si te pide un ZIP, comprime esos archivos (no la carpeta contenedora) y súbelo.
-5. **Deploy**. En 1 minuto tendrás una URL tipo `boda-tonantzin-rafa.pages.dev`.
+El sitio se publica directo desde el repo `boda-tonantzin-rafa`, rama `main`,
+carpeta raíz (`/`) — sin build, sin GitHub Actions ("legacy" Pages).
 
-Para actualizar luego: vuelves a **Upload assets** y subes la versión nueva.
-
-### Opción B — Conectar a Git (auto-deploy en cada cambio)
-Útil si vas a editar seguido. Requiere subir el proyecto a GitHub.
-1. Sube el proyecto a un repo de GitHub.
-2. Cloudflare Pages → **Create application** → **Pages** → **Connect to Git**.
-3. Configuración de build (es estático, sin build):
-   - **Framework preset:** None
-   - **Build command:** *(vacío)*
-   - **Build output directory:** `/`
-4. Deploy. A partir de ahí, cada `git push` republica solo.
+- **Settings → Pages** del repo: fuente = rama `main`, carpeta `/`.
+- Cada `git push` a `main` republica el sitio automáticamente en 1-2 minutos.
+- URL por defecto (sin dominio propio): `https://christians26.github.io/boda-tonantzin-rafa/`.
 
 ---
 
-## 2) Comprar y conectar el dominio
+## 2) Dominio propio (comprado en GoDaddy u otro registrador)
 
-Lo más simple es comprar el dominio **en Cloudflare** (precio al costo, sin sobreprecio):
+Dominio actual: **`tonantzinyrafa.com`** (ya conectado y funcionando).
 
-1. Dashboard de Cloudflare → **Domain Registration** → **Register Domains**.
-2. Busca y compra, p. ej. `tonantzinyrafael.com` (~10-12 USD/año un `.com`).
-3. Ve a tu proyecto de Pages → pestaña **Custom domains** → **Set up a domain**.
-4. Escribe tu dominio (y opcional `www.`). Como está en Cloudflare, el registro
-   DNS se crea **automáticamente** y el certificado **HTTPS** se emite solo
-   (unos minutos).
+### En GitHub
+1. **Settings → Pages** → **Custom domain** → escribe el dominio → **Save**.
+   Esto crea un archivo `CNAME` en el repo con ese texto.
+2. Cuando el DNS resuelva correctamente, GitHub emite el certificado HTTPS
+   solo (puede tardar de minutos a ~1 hora; si se queda atorado por horas,
+   quitar y volver a poner el dominio en ese mismo campo fuerza una nueva
+   solicitud de certificado).
+3. Activa **Enforce HTTPS** en cuanto esté disponible.
 
-¿Compraste el dominio en otro lado (Namecheap, GoDaddy)? Dos caminos:
-- **Mover los nameservers** a Cloudflare (recomendado: te lo indica el panel al
-  "Add a site"), o
-- Añadir un **CNAME** de tu dominio apuntando a `boda-tonantzin-rafa.pages.dev`.
+### En el registrador del dominio (GoDaddy, etc.)
+Agrega estos registros en la zona DNS del dominio:
+
+- **4 registros A** en `@` (raíz), apuntando a las IPs de GitHub Pages:
+  ```
+  185.199.108.153
+  185.199.109.153
+  185.199.110.153
+  185.199.111.153
+  ```
+- **1 registro CNAME** en `www` → `christians26.github.io`
+
+Si el dominio tiene "Domain Forwarding"/"Reenvío" activado en el registrador,
+desactívalo — pisa los registros A y evita que resuelva a GitHub Pages.
+
+---
+
+## 3) Variantes de invitación (1 o 2 personas)
+
+El bottom sheet de RSVP cambia según el parámetro `?p=` en la URL:
+
+| Variante | URL completa | Comportamiento |
+|---|---|---|
+| 1 persona (default) | `https://tonantzinyrafa.com/` | nombre + "¿Nos acompañarás?" (sí / no podré ir) |
+| 1 persona (explícito) | `https://tonantzinyrafa.com/?p=1` | igual que el default |
+| 2 personas | `https://tonantzinyrafa.com/?p=2` | nombre + "¿Cuántas personas asistirán?" (1 ó 2) |
+
+La nota del boleto y el mensaje de agradecimiento cambian según la variante.
+No hay parámetro para personalizar el nombre del invitado por URL — el nombre
+se captura como campo de texto libre en el formulario.
 
 ---
 
@@ -63,3 +73,4 @@ Lo más simple es comprar el dominio **en Cloudflare** (precio al costo, sin sob
 - [ ] Probado en **teléfono** (es donde más entrarán): zonas de Templo, Hacienda,
       Liverpool y RSVP funcionando.
 - [ ] Dominio con candado (HTTPS) activo.
+- [ ] Confirmar que cada invitado recibe la URL con el `?p=` correcto (1 o 2 personas).
