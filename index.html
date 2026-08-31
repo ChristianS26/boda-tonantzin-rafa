@@ -411,6 +411,21 @@
 
     .field__err { color: #9b2c2c; font-size: 0.75rem; margin-top: 0.3rem; display: none; }
     .field.invalid .field__err { display: block; }
+
+    /* error de envío (falló la red / no llegó a Google) */
+    .sheet__senderr {
+      display: none;
+      margin: 0 0 0.9rem;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #9b2c2c;
+      border-radius: 8px;
+      background: rgba(155, 44, 44, 0.07);
+      color: #9b2c2c;
+      font-size: 0.82rem;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .sheet.send-error .sheet__senderr { display: block; }
     .field.invalid input,
     .field.invalid .seg label { border-color: #9b2c2c; }
 
@@ -671,14 +686,14 @@
 
   <!-- ============================================================
        RSVP · bottom sheet (native <dialog>)
-       Envía a Google Forms a través del iframe oculto de abajo.
+       Envía a Google Forms con fetch; si falla, muestra error y reintento.
        ============================================================ -->
   <dialog class="sheet" id="rsvpSheet" aria-labelledby="rsvpTitle">
     <button type="button" class="sheet__close" id="rsvpClose" aria-label="Cerrar">&times;</button>
     <div class="sheet__inner">
       <div class="sheet__grip" aria-hidden="true"></div>
 
-      <form class="sheet__form" id="rsvpForm" method="POST" target="rsvp_gframe" novalidate>
+      <form class="sheet__form" id="rsvpForm" method="POST" novalidate>
         <div class="sheet__head">
           <h2 class="sheet__title" id="rsvpTitle">Confirmar asistencia</h2>
           <p class="sheet__sub">Tonantzin &amp; Rafael · 24 de octubre 2026</p>
@@ -722,6 +737,10 @@
         <input type="hidden" data-field="nombre"   id="nombreOut" />
         <input type="hidden" data-field="personas" id="personasOut" />
 
+        <p class="sheet__senderr" id="rsvpSendErr" role="alert">
+          No pudimos enviar tu confirmación. Revisa tu conexión e inténtalo de nuevo, por favor.
+        </p>
+
         <button type="submit" class="sheet__submit" id="rsvpSubmit">Enviar confirmación</button>
       </form>
 
@@ -733,10 +752,6 @@
       </div>
     </div>
   </dialog>
-
-  <!-- target oculto: el POST a Google Forms cae aquí sin recargar la página -->
-  <iframe name="rsvp_gframe" id="rsvp_gframe" title="rsvp" aria-hidden="true"
-          style="position:absolute;width:0;height:0;border:0;left:-9999px"></iframe>
 
   <!-- ============================================================
        GALERÍA · lightbox a pantalla completa (se llena desde JS)
@@ -792,7 +807,6 @@
     if (!sheet || !openBtn) return;
 
     const form    = document.getElementById('rsvpForm');
-    const gframe  = document.getElementById('rsvp_gframe');
     const submit  = document.getElementById('rsvpSubmit');
     const fNombre = document.getElementById('f-nombre');
     const fPers   = document.getElementById('f-personas');
@@ -852,12 +866,13 @@
       return ok;
     }
 
-    let pending = false;
+    let sending = false;
     let asistira = true;
     form.addEventListener('submit', function (e) {
-      if (!validate()) { e.preventDefault(); return; }
+      e.preventDefault();
+      if (sending) return;
+      if (!validate()) return;
       if (!configured) {
-        e.preventDefault();
         alert('Falta conectar el Google Form: edita el bloque CONFIG (sección Google Forms) en el HTML.');
         return;
       }
@@ -883,21 +898,43 @@
         }
       }
 
-      // dejar que el POST nativo viaje al iframe oculto
-      pending = true;
+      /* Envío con fetch: a diferencia del iframe (que "cargaba" igual con
+         éxito o error), fetch rechaza si el POST no llega a Google (sin red,
+         bloqueadores, timeout), y ahí mostramos error + reintentar. La
+         respuesta es opaca (no-cors), así que si llega, se da por registrada. */
+      sending = true;
+      sheet.classList.remove('send-error');
       submit.disabled = true;
       submit.textContent = 'Enviando…';
-    });
 
-    // El load del iframe tras enviar = éxito (ignoramos el load inicial en blanco)
-    gframe.addEventListener('load', function () {
-      if (!pending) return;
-      pending = false;
-      doneTitle.textContent = asistira ? '¡Gracias!' : '¡Gracias por avisar!';
-      doneMsg.textContent = asistira
-        ? '¡Te esperamos el 24 de octubre! Tu confirmación quedó registrada.'
-        : 'Qué pena que no puedas acompañarnos. Gracias por avisarnos.';
-      sheet.classList.add('is-done');
+      const body = new URLSearchParams();
+      body.append(RSVP.entry.nombre,   nombreOut.value);
+      body.append(RSVP.entry.personas, personasOut.value);
+
+      const ctrl  = ('AbortController' in window) ? new AbortController() : null;
+      const timer = ctrl && setTimeout(function () { ctrl.abort(); }, 15000);
+
+      fetch(RSVP.action, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: body,
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function () {
+        doneTitle.textContent = asistira ? '¡Gracias!' : '¡Gracias por avisar!';
+        doneMsg.textContent = asistira
+          ? '¡Te esperamos el 24 de octubre! Tu confirmación quedó registrada.'
+          : 'Qué pena que no puedas acompañarnos. Gracias por avisarnos.';
+        sheet.classList.add('is-done');
+      }).catch(function () {
+        sheet.classList.add('send-error');
+        submit.textContent = 'Reintentar envío';
+      }).finally(function () {
+        if (timer) clearTimeout(timer);
+        sending = false;
+        submit.disabled = false;
+        if (!sheet.classList.contains('is-done')) return;
+        submit.textContent = 'Enviar confirmación';
+      });
     });
   })();
   </script>
